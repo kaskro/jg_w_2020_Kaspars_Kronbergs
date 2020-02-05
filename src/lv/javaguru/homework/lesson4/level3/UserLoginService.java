@@ -3,11 +3,11 @@ package lv.javaguru.homework.lesson4.level3;
 public class UserLoginService {
 
     public boolean login(String inputPassword, User user){
-        if(!user.blocked){
-            if(verify(inputPassword, user.password)){
+        if(!user.isBlocked()){
+            if(verify(inputPassword, user.getPassword())){
                 return true;
             } else {
-                user.loginAttemptsLeft--;
+                user.setLoginAttemptsLeft(user.getLoginAttemptsLeft() - 1);
                 user.block();
                 return false;
             }

@@ -6,6 +6,38 @@ public class User {
     int loginAttemptsLeft = 3;
     boolean blocked;
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getLoginAttemptsLeft() {
+        return loginAttemptsLeft;
+    }
+
+    public void setLoginAttemptsLeft(int loginAttemptsLeft) {
+        this.loginAttemptsLeft = loginAttemptsLeft;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
     public void resetLoginAttempts(){
         loginAttemptsLeft = 3;
         blocked = false;
