@@ -1,9 +1,9 @@
 package lv.javaguru.homework.lesson3.level3;
 
 public class Product {
-    String name;
-    double regularPrice;
-    double discount;
+    private String name;
+    private double regularPrice;
+    private double discount;
 
     public String getName() {
         return name;

@@ -1,11 +1,11 @@
 package lv.javaguru.homework.lesson4.level4;
 
 public class CreditCard {
-    String cardNumber;
-    String pinCode;
-    double balance;
-    double creditLimit;
-    double usedCredit;
+    private String cardNumber;
+    private String pinCode;
+    private double balance;
+    private double creditLimit;
+    private double usedCredit;
 
     CreditCard(String cardNumber, String pinCode, double balance, double creditLimit, double usedCredit){
         this.cardNumber = cardNumber;
@@ -15,13 +15,13 @@ public class CreditCard {
         this.usedCredit = usedCredit;
     }
 
-    public boolean topup(double amount, String pinCode){
-        boolean canTopup = false;
+    public boolean deposit(double amount, String pinCode){
+        boolean canDeposit = false;
         if(this.pinCode.equals(pinCode)){
             balance += usedCredit > 0 ? amount - usedCredit : amount;
-            canTopup = true;
+            canDeposit = true;
         }
-        return canTopup;
+        return canDeposit;
     }
 
     public boolean withdraw(double amount, String pinCode){

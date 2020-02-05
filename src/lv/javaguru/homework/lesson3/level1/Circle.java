@@ -1,7 +1,7 @@
 package lv.javaguru.homework.lesson3.level1;
 
 public class Circle {
-    double radius;
+    private double radius;
 
     public double getRadius() {
         return radius;

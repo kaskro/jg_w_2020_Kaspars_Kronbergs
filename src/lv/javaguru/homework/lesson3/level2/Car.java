@@ -1,9 +1,9 @@
 package lv.javaguru.homework.lesson3.level2;
 
 public class Car {
-    String color;
-    String brand;
-    int year;
+    private String color;
+    private String brand;
+    private int year;
 
     public String getColor() {
         return color;

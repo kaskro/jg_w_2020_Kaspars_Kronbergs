@@ -1,7 +1,5 @@
 package lv.javaguru.homework.lesson4.level4;
 
-import lv.javaguru.homework.lesson4.level2.Stock;
-
 public class CreditCardTest {
     public void mainTest(){
         String cardNumber = "1234 5678 1234 1234";
@@ -12,8 +10,8 @@ public class CreditCardTest {
 
         CreditCard creditCard = new CreditCard(cardNumber, pinCode , balance, creditLimit, usedCredit);
 
-        check(creditCard.topup(100, "1111"), false, "testForWrongPinWhileTopup");
-        check(creditCard.topup(100, pinCode), true, "testForRightPinWhileTopup");
+        check(creditCard.deposit(100, "1111"), false, "testForWrongPinWhileTopup");
+        check(creditCard.deposit(100, pinCode), true, "testForRightPinWhileTopup");
         check(creditCard.withdraw(100, "1111"), false, "testForWrongPinWhileWithdraw");
         check(creditCard.withdraw(500, pinCode), false, "testForRightPinAndExceedingLimitWithdraw");
         check(creditCard.withdraw(200, pinCode), true, "testForRightPinAndAllowedLimitWithdraw");

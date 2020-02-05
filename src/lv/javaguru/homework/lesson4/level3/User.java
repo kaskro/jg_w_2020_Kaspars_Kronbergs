@@ -1,10 +1,10 @@
 package lv.javaguru.homework.lesson4.level3;
 
 public class User {
-    String user;
-    String password;
-    int loginAttemptsLeft = 3;
-    boolean blocked;
+    private String user;
+    private String password;
+    private int loginAttemptsLeft = 3;
+    private boolean blocked;
 
     public String getUser() {
         return user;
