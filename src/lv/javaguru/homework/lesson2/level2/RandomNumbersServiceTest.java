@@ -14,6 +14,8 @@ public class RandomNumbersServiceTest {
         System.out.print(firstRandomNumber + " + ");
         System.out.print(secondRandomNumber + " + ");
         System.out.print(thirdRandomNumber + " = ");
+        //summu labāk iznest atsevišķā mainīgajā
+        //tā programma būs vieglāk saprotama
         System.out.println(firstRandomNumber + secondRandomNumber + thirdRandomNumber);
     }
 }
