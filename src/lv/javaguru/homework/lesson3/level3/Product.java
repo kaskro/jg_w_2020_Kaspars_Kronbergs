@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson3.level3;
 
+//Ok, bet izmanto kombināciju "ctrl + alt + l"
 public class Product {
     private String name;
     private double regularPrice;
@@ -29,6 +30,7 @@ public class Product {
         this.discount = discount;
     }
 
+    //trūkst public
     double calculateActualPrice(){
         return regularPrice - (regularPrice * discount)/100;
     }
@@ -37,7 +39,7 @@ public class Product {
         System.out.print("Product : ");
         System.out.print("name = " + getName() + ", ");
         System.out.print("regular price = " + getRegularPrice() + ", ");
-        System.out.print("discount = " + getDiscount() + "%, ");
+        System.out.print("discount = " + getDiscount() + "%, "); //procentiem jābūt izdrukātiem bez ",0"
         System.out.print("actual price = " + calculateActualPrice() + " EUR");
     }
 }

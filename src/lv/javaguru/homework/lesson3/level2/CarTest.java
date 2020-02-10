@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson3.level2;
 
+//Ok, tik atstarpes, inicializācija viena daļa, izvade otra
 public class CarTest {
     public static void main(String[] args) {
         Car car = new Car();

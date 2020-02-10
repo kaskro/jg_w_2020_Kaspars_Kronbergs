@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson3.level1;
 
+//Ok
 public class Circle {
     private double radius;
 
