@@ -39,7 +39,7 @@ public class Product {
         System.out.print("Product : ");
         System.out.print("name = " + getName() + ", ");
         System.out.print("regular price = " + getRegularPrice() + ", ");
-        System.out.print("discount = " + getDiscount() + "%, "); //procentiem jābūt izdrukātiem bez ",0"
+        System.out.print("discount = " + (int) getDiscount() + "%, "); //procentiem jābūt izdrukātiem bez ",0"
         System.out.print("actual price = " + calculateActualPrice() + " EUR");
     }
 }
