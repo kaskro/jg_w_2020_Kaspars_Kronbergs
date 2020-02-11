@@ -10,12 +10,12 @@ public class RandomNumbersServiceTest {
         int firstRandomNumber = randomGenerator.nextInt(100);
         int secondRandomNumber = randomGenerator.nextInt(100);
         int thirdRandomNumber = randomGenerator.nextInt(100);
-
+        int sum = firstRandomNumber + secondRandomNumber + thirdRandomNumber;
         System.out.print(firstRandomNumber + " + ");
         System.out.print(secondRandomNumber + " + ");
         System.out.print(thirdRandomNumber + " = ");
         //summu labāk iznest atsevišķā mainīgajā
         //tā programma būs vieglāk saprotama
-        System.out.println(firstRandomNumber + secondRandomNumber + thirdRandomNumber);
+        System.out.println(sum);
     }
 }

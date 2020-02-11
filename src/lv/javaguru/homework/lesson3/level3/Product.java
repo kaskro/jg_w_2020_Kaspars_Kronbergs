@@ -31,11 +31,11 @@ public class Product {
     }
 
     //trūkst public
-    double calculateActualPrice(){
-        return regularPrice - (regularPrice * discount)/100;
+    public double calculateActualPrice() {
+        return regularPrice - (regularPrice * discount) / 100;
     }
 
-    public void printInformation(){
+    public void printInformation() {
         System.out.print("Product : ");
         System.out.print("name = " + getName() + ", ");
         System.out.print("regular price = " + getRegularPrice() + ", ");
