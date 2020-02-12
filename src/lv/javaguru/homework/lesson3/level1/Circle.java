@@ -12,7 +12,7 @@ public class Circle {
         this.radius = radius;
     }
 
-    double calculateArea(){
+    double calculateArea() {
         return 3.14 * radius * radius;
     }
 

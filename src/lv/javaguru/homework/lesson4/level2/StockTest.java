@@ -2,7 +2,7 @@ package lv.javaguru.homework.lesson4.level2;
 
 public class StockTest {
 
-    public void mainTest(){
+    public void mainTest() {
         double firstTestValue = 150;
         double maxTestValue = 150.37;
         double minTestValue = 149.82;

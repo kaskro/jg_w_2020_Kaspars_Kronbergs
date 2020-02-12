@@ -38,12 +38,12 @@ public class User {
         this.blocked = blocked;
     }
 
-    public void resetLoginAttempts(){
+    public void resetLoginAttempts() {
         loginAttemptsLeft = 3;
         blocked = false;
     }
 
-    public void block(){
+    public void block() {
         blocked = loginAttemptsLeft <= 0;
     }
 }

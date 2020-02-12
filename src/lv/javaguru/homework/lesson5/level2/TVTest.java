@@ -1,7 +1,7 @@
 package lv.javaguru.homework.lesson5.level2;
 
 public class TVTest {
-    public void equalAndToStringDemo(){
+    public void equalAndToStringDemo() {
         TV firstTV = new TV();
         firstTV.setManufacturer("Samsung");
         firstTV.setCurrentChannel(1);
@@ -28,7 +28,7 @@ public class TVTest {
         System.out.println("(firstTV == sameAsFirstTV) = " + firstTV.equals(sameAsFirstTV));
     }
 
-    public void mainTest(){
+    public void mainTest() {
         TV tv = new TV();
         int currentChannel = 50;
         int maxChannel = 99;
@@ -46,7 +46,7 @@ public class TVTest {
 
         check("testForCurrentChannel", tv.getCurrentChannel(), currentChannel);
         check("testForCurrentVolumeLevel", tv.getCurrentVolumeLevel(), currentVolumeLevel);
-        check("testForManufacturer", tv.getManufacturer(), manufacturer );
+        check("testForManufacturer", tv.getManufacturer(), manufacturer);
         check("testForTurnedOn", tv.isTurnedOn(), turnedOn);
 
         tv.turnOff();

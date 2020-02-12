@@ -32,14 +32,14 @@ public class Book {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         boolean isAllValuesEqual = false;
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        if(Objects.equals(author, book.author)){
-            if(Objects.equals(title, book.title)){
-                if(pageCount == book.pageCount){
+        if (Objects.equals(author, book.author)) {
+            if (Objects.equals(title, book.title)) {
+                if (pageCount == book.pageCount) {
                     isAllValuesEqual = true;
                 }
             }
@@ -48,12 +48,12 @@ public class Book {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Book{" +
                 "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", pageCount=" + pageCount +
-                 '}';
+                '}';
     }
 
 }

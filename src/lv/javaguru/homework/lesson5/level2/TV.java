@@ -38,38 +38,39 @@ public class TV {
         this.turnedOn = turnedOn;
     }
 
-    public int nextChannel(){
-        if(turnedOn){
+    public int nextChannel() {
+        if (turnedOn) {
             currentChannel = currentChannel + 1 < 100 ? currentChannel + 1 : 0;
         }
         return currentChannel;
     }
 
-    public int previousChannel(){
-        if(turnedOn){
+    public int previousChannel() {
+        if (turnedOn) {
             currentChannel = currentChannel - 1 >= 0 ? currentChannel - 1 : 99;
         }
         return currentChannel;
     }
-    public int increaseVolume(){
-        if(turnedOn) {
+
+    public int increaseVolume() {
+        if (turnedOn) {
             currentVolumeLevel += currentVolumeLevel + 1 <= 100 ? 1 : 0;
         }
         return currentVolumeLevel;
     }
 
-    public int decreaseVolume(){
-       if(turnedOn) {
-           currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0;
-       }
-       return currentVolumeLevel;
+    public int decreaseVolume() {
+        if (turnedOn) {
+            currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0;
+        }
+        return currentVolumeLevel;
     }
 
-    public void turnOn(){
+    public void turnOn() {
         turnedOn = true;
     }
 
-    public void turnOff(){
+    public void turnOff() {
         turnedOn = false;
     }
 

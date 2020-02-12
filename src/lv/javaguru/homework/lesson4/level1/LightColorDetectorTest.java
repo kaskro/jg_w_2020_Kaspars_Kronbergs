@@ -2,13 +2,13 @@ package lv.javaguru.homework.lesson4.level1;
 
 public class LightColorDetectorTest {
 
-    public void testWaves(int wavelength, String expectedColor, String testName){
+    public void testWaves(int wavelength, String expectedColor, String testName) {
         LightColorDetector testObject = new LightColorDetector();
         String actualResult = testObject.detect(wavelength);
         check(actualResult, expectedColor, testName);
     }
 
-    public void check(String actualResult, String expectedResult, String testName){
+    public void check(String actualResult, String expectedResult, String testName) {
         if (actualResult.equals(expectedResult)) {
             System.out.println(testName + " has passed!");
         } else {

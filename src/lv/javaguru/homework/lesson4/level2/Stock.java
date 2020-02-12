@@ -6,7 +6,7 @@ public class Stock {
     private double max;
     private double min;
 
-    Stock(String company, double currentValue){
+    Stock(String company, double currentValue) {
         this.company = company;
         this.currentValue = currentValue;
         this.min = currentValue;
@@ -45,13 +45,13 @@ public class Stock {
         this.min = min;
     }
 
-    public void updatePrice(double value){
+    public void updatePrice(double value) {
         max = Math.max(value, getMax());
         min = Math.min(value, getMin());
         currentValue = value;
     }
 
-    public void printInformation(){
+    public void printInformation() {
         System.out.println("current value = " + getCurrentValue());
         System.out.println("max = " + getMax());
         System.out.println("min = " + getMin());
