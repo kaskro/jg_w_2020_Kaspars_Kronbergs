@@ -2,13 +2,13 @@ package lv.javaguru.homework.lesson4.level1;
 
 public class LightColorDetectorTest {
 
-    public void testWaves(int wavelength, String expectedColor, String testName) {
+    public void testWaves(String testName, int wavelength, String expectedColor) {
         LightColorDetector testObject = new LightColorDetector();
         String actualResult = testObject.detect(wavelength);
-        check(actualResult, expectedColor, testName);
+        check(testName, actualResult, expectedColor);
     }
 
-    public void check(String actualResult, String expectedResult, String testName) {
+    public void check(String testName, String actualResult, String expectedResult) {
         if (actualResult.equals(expectedResult)) {
             System.out.println(testName + " has passed!");
         } else {
@@ -19,13 +19,13 @@ public class LightColorDetectorTest {
 
     public static void main(String[] args) {
         LightColorDetectorTest testRunner = new LightColorDetectorTest();
-        testRunner.testWaves(440, "Violet", "testForViolet");
-        testRunner.testWaves(460, "Blue", "testForBlue");
-        testRunner.testWaves(550, "Green", "testForGreen");
-        testRunner.testWaves(580, "Yellow", "testForYellow");
-        testRunner.testWaves(610, "Orange", "testForOrange");
-        testRunner.testWaves(730, "Red", "testForRed");
-        testRunner.testWaves(379, "Can't see the light.", "testForNoColor");
-        testRunner.testWaves(450, "Blue", "testForBlueOnEdge");
+        testRunner.testWaves("testForViolet", 440, "Violet");
+        testRunner.testWaves("testForBlue", 460, "Blue");
+        testRunner.testWaves("testForGreen", 550, "Green");
+        testRunner.testWaves("testForYellow", 580, "Yellow");
+        testRunner.testWaves("testForOrange", 610, "Orange");
+        testRunner.testWaves("testForRed", 730, "Red");
+        testRunner.testWaves("testForNoColor", 379, "Can't see the light.");
+        testRunner.testWaves("testForBlueOnEdge", 450, "Blue");
     }
 }

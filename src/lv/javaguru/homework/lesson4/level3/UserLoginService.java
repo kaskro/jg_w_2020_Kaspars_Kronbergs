@@ -7,7 +7,6 @@ public class UserLoginService {
             if (verify(inputPassword, user.getPassword())) {
                 return true;
             } else {
-                user.setLoginAttemptsLeft(user.getLoginAttemptsLeft() - 1);
                 user.block();
                 return false;
             }

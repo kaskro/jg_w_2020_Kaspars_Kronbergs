@@ -44,6 +44,7 @@ public class User {
     }
 
     public void block() {
+        loginAttemptsLeft -= loginAttemptsLeft > 0 ? 1 : 0;
         blocked = loginAttemptsLeft <= 0;
     }
 }

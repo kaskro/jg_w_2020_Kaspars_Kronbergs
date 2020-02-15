@@ -10,14 +10,14 @@ public class CreditCardTest {
 
         CreditCard creditCard = new CreditCard(cardNumber, pinCode, balance, creditLimit, usedCredit);
 
-        check(creditCard.deposit(100, "1111"), false, "testForWrongPinWhileTopup");
-        check(creditCard.deposit(100, pinCode), true, "testForRightPinWhileTopup");
-        check(creditCard.withdraw(100, "1111"), false, "testForWrongPinWhileWithdraw");
-        check(creditCard.withdraw(500, pinCode), false, "testForRightPinAndExceedingLimitWithdraw");
-        check(creditCard.withdraw(200, pinCode), true, "testForRightPinAndAllowedLimitWithdraw");
+        check("testForWrongPinWhileDepositing", creditCard.deposit(100, "1111"), false);
+        check("testForRightPinWhileDepositing", creditCard.deposit(100, pinCode), true);
+        check("testForWrongPinWhileWithdraw", creditCard.withdraw(100, "1111"), false);
+        check("testForRightPinAndExceedingLimitWithdraw", creditCard.withdraw(500, pinCode), false);
+        check("testForRightPinAndAllowedLimitWithdraw", creditCard.withdraw(200, pinCode), true);
     }
 
-    public void check(boolean actualResult, boolean expectedResult, String testName) {
+    public void check(String testName, boolean actualResult, boolean expectedResult) {
         if (actualResult == expectedResult) {
             System.out.println(testName + " has passed!");
         } else {

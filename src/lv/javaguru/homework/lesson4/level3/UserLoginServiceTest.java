@@ -7,18 +7,18 @@ public class UserLoginServiceTest {
         user.setPassword("abc");
         String wrongPassword = "ab";
         UserLoginService loginService = new UserLoginService();
-        check(loginService.login(wrongPassword, user), false, "testForWrongPassword");
-        check(loginService.login(user.getPassword(), user), true, "testForRightPassword");
+        check("testForWrongPassword", loginService.login(wrongPassword, user), false);
+        check("testForRightPassword", loginService.login(user.getPassword(), user), true);
 
         loginService.login(wrongPassword, user);
         loginService.login(wrongPassword, user);
         // Failed 3 login attempts
-        check(user.isBlocked(), true, "testForBlockedUserIfAttemptsAre0");
+        check("testForBlockedUserIfAttemptsAre0", user.isBlocked(), true);
         user.resetLoginAttempts();
-        check(user.isBlocked(), false, "testForBlockedUserIfAttemptsAre3");
+        check("testForBlockedUserIfAttemptsAre3", user.isBlocked(), false);
     }
 
-    public void check(boolean actualResult, boolean expectedResult, String testName) {
+    public void check(String testName, boolean actualResult, boolean expectedResult) {
         if (actualResult == expectedResult) {
             System.out.println(testName + " has passed!");
         } else {
