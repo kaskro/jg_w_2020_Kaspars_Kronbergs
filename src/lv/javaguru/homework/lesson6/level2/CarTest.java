@@ -4,7 +4,7 @@ public class CarTest {
 
     Car car = new Car();
 
-    public void testForSettingModel(){
+    public void testForSettingModel() {
         String model = "Audi";
         String testName = "testForSettingModel";
 
@@ -12,15 +12,15 @@ public class CarTest {
         check(testName, car.getModel(), model);
     }
 
-    public void testForSettingColor(){
+    public void testForSettingColor() {
         String color = "Red";
         String testName = "testForSettingColor";
 
-        car.setModel(color);
+        car.setColor(color);
         check(testName, car.getColor(), color);
     }
 
-    public void testForSettingMaxSpeed(){
+    public void testForSettingMaxSpeed() {
         int maxSpeed = 100;
         String testName = "testForSettingMaxSpeed";
 
@@ -28,12 +28,114 @@ public class CarTest {
         check(testName, car.getMaxSpeed(), maxSpeed);
     }
 
-    public void testForSettingCurrentSpeed(){
+    public void testForSettingCurrentSpeed() {
         int currentSpeed = 20;
         String testName = "testForSettingCurrentSpeed";
 
-        car.setMaxSpeed(currentSpeed);
+        car.setCurrentSpeed(currentSpeed);
         check(testName, car.getCurrentSpeed(), currentSpeed);
+    }
+
+    public void testForCarIsDriving() {
+        int currentSpeed = 20;
+        String testName = "testForCarDriving";
+
+        car.setCurrentSpeed(currentSpeed);
+        check(testName, car.isDriving(), true);
+    }
+
+    public void testForCarIsNotDriving() {
+        int currentSpeed = 0;
+        String testName = "testForCarIsNotDriving";
+
+        car.setCurrentSpeed(currentSpeed);
+        check(testName, car.isDriving(), false);
+    }
+
+    public void testForAcceleration() {
+        int currentSpeed = 20;
+        int speedAfterAcceleration = 21;
+        String testName = "testForAcceleration";
+
+        car.setCurrentSpeed(currentSpeed);
+        car.accelerate();
+        check(testName, car.getCurrentSpeed(), speedAfterAcceleration);
+    }
+
+    public void testForAccelerationAtMaxSpeed() {
+        int maxSpeed = 100;
+        String testName = "testForAccelerationAtMaxSpeed";
+
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(maxSpeed);
+        car.accelerate();
+        check(testName, car.getCurrentSpeed(), maxSpeed);
+    }
+
+    public void testForSlowingDown() {
+        int currentSpeed = 20;
+        int speedAfterSlowingDown = 19;
+        String testName = "testForSlowingDown";
+
+        car.setCurrentSpeed(currentSpeed);
+        car.slowDown();
+        check(testName, car.getCurrentSpeed(), speedAfterSlowingDown);
+    }
+
+    public void testForSlowingDownWhenCarSpeedIsZero() {
+        int currentSpeed = 0;
+        String testName = "testForSlowingDownWhenCarSpeedIsZero";
+
+        car.setCurrentSpeed(currentSpeed);
+        car.slowDown();
+        check(testName, car.getCurrentSpeed(), currentSpeed);
+    }
+
+    public void testForSpeedUp() {
+        int currentSpeed = 0;
+        int maxSpeed = 100;
+        String testName = "testForSpeedUp";
+
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(currentSpeed);
+        car.speedUp();
+        check(testName, car.getCurrentSpeed(), maxSpeed);
+    }
+
+    public void testCanAccelerate() {
+        int currentSpeed = 99;
+        int maxSpeed = 100;
+        String testName = "testCanAccelerate";
+
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(currentSpeed);
+        check(testName, car.canAccelerate(), true);
+    }
+
+    public void testCanNotAccelerate() {
+        int currentSpeed = 100;
+        int maxSpeed = 100;
+        String testName = "testCanNotAccelerate";
+
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(currentSpeed);
+        check(testName, car.canAccelerate(), false);
+    }
+
+    public void mainTest() {
+        testForSettingModel();
+        testForSettingColor();
+        testForSettingCurrentSpeed();
+        testForCarIsNotDriving();
+        testForCarIsDriving();
+        testCanAccelerate();
+        testCanNotAccelerate();
+        testForSettingMaxSpeed();
+        testForAcceleration();
+        testForAccelerationAtMaxSpeed();
+        testForSlowingDown();
+        testForSlowingDownWhenCarSpeedIsZero();
+        testForSpeedUp();
     }
 
     public void check(String testName, int actualResult, int expectedResult) {
@@ -63,7 +165,9 @@ public class CarTest {
         }
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        CarTest testRunner = new CarTest();
+        testRunner.mainTest();
     }
 }

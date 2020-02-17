@@ -11,6 +11,7 @@ public class RandomNumbersServiceTest {
         int secondRandomNumber = randomGenerator.nextInt(100);
         int thirdRandomNumber = randomGenerator.nextInt(100);
         int sum = firstRandomNumber + secondRandomNumber + thirdRandomNumber;
+
         System.out.print(firstRandomNumber + " + ");
         System.out.print(secondRandomNumber + " + ");
         System.out.print(thirdRandomNumber + " = ");
