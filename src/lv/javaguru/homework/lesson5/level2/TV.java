@@ -38,38 +38,44 @@ public class TV {
         this.turnedOn = turnedOn;
     }
 
+    //šī metode nav notestēta
     public int nextChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel + 1 < 100 ? currentChannel + 1 : 0;
+            currentChannel = currentChannel + 1 < 100 ? currentChannel + 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai mainīgajā
         }
         return currentChannel;
     }
 
+    //šī metode nav notestēta
     public int previousChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel - 1 >= 0 ? currentChannel - 1 : 99;
+            currentChannel = currentChannel - 1 >= 0 ? currentChannel - 1 : 99; //nosacījumu labak iznest atsevišķā metodē vai mainīgajā
         }
         return currentChannel;
     }
 
+    //šī metode nav notestēta
     public int increaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel += currentVolumeLevel + 1 <= 100 ? 1 : 0;
+            currentVolumeLevel += currentVolumeLevel + 1 <= 100 ? 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai arī mainīgajā
         }
         return currentVolumeLevel;
     }
 
+    //šī metode nav notestēta
     public int decreaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0;
+            currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai arī mainīgajā
         }
         return currentVolumeLevel;
     }
 
+    //šī metode nav notestēta
     public void turnOn() {
         turnedOn = true;
     }
 
+    //šī metode nav notestēta
     public void turnOff() {
         turnedOn = false;
     }
@@ -81,6 +87,7 @@ public class TV {
 
         TV tv = (TV) o;
 
+        //šeit izmanto "&&" un saliec visu vienā izteiksmē
         if (currentChannel != tv.currentChannel) return false;
         if (currentVolumeLevel != tv.currentVolumeLevel) return false;
         if (turnedOn != tv.turnedOn) return false;

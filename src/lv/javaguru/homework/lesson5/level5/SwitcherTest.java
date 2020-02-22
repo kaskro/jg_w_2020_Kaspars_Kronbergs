@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson5.level5;
 
+//ok
 public class SwitcherTest {
     public static void main(String[] args) {
         int count = 0;

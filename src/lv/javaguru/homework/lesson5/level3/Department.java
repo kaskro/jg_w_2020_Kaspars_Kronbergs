@@ -2,6 +2,7 @@ package lv.javaguru.homework.lesson5.level3;
 
 import java.util.Objects;
 
+//Ok
 public class Department {
     private String name;
     private Company company;

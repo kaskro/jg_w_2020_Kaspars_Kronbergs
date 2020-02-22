@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson5.level4;
 
+//skatīt komentārus l2 mājas darbā
 public class TV {
     private int currentChannel;
     private int currentVolumeLevel;

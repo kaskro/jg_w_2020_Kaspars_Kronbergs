@@ -2,6 +2,7 @@ package lv.javaguru.homework.lesson5.level3;
 
 import java.util.Objects;
 
+//ok
 public class Company {
     private String name;
     private String registrationNumber;

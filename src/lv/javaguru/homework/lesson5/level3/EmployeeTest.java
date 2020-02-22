@@ -1,5 +1,7 @@
 package lv.javaguru.homework.lesson5.level3;
 
+//ok
+//labāk nakamreiz izmanto testus
 public class EmployeeTest {
     public static void main(String[] args) {
 

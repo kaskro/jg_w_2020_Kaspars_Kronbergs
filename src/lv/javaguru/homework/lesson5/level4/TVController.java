@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson5.level4;
 
+//ok
 public class TVController {
     private TV tv;
 
@@ -31,6 +32,7 @@ public class TVController {
         tv.turnOn();
     }
 
+    //nav izmantota metode
     public void turnOff() {
         tv.turnOff();
     }

@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson5.level1;
 
+//izmanto atsevišķu metodi katram testam
 public class BookTest {
     public static void main(String[] args) {
         Book firstBook = new Book();

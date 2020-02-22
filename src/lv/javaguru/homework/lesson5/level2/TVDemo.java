@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson5.level2;
 
+//testus atsevišķās metodēs
 public class TVDemo {
     public void equalAndToStringDemo() {
         TV firstTV = new TV();

@@ -45,6 +45,10 @@ public class Book {
             }
         }
         return isAllValuesEqual;
+        //šādi ir īsāk un skaidrāk
+//        return pageCount == book.pageCount &&
+//                Objects.equals(author, book.author) &&
+//                Objects.equals(title, book.title);
     }
 
     @Override
