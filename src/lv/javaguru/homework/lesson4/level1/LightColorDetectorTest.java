@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson4.level1;
 
+//Ok
 public class LightColorDetectorTest {
 
     public void testWaves(String testName, int wavelength, String expectedColor) {

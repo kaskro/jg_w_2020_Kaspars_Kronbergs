@@ -1,7 +1,8 @@
 package lv.javaguru.homework.lesson4.level3;
 
+//Ok
 public class UserLoginServiceTest {
-    public void mainTest() {
+    public void mainTest() { //testa nosaukums neizsaka neko par testa scenariju
         User user = new User();
         user.setUser("test");
         user.setPassword("abc");

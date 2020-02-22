@@ -1,6 +1,10 @@
 package lv.javaguru.homework.lesson4.level4;
 
 public class CreditCardTest {
+
+    //testus labāk sadalīt atsevišķās metodēs
+    //un katram testam ir jāsākās ar "tīru" objektu
+    //tas ir stāvokļis tiek iesetots no jauna
     public void mainTest() {
         String cardNumber = "1234 5678 1234 1234";
         String pinCode = "1234";

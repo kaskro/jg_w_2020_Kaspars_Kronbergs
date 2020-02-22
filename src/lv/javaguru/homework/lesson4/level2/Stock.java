@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson4.level2;
 
+//Ok
 public class Stock {
     private String company;
     private double currentValue;

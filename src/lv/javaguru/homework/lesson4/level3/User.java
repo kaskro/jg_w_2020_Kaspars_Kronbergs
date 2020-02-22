@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson4.level3;
 
+//Ok
 public class User {
     private String user;
     private String password;

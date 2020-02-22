@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson4.level1;
 
+//Ok
 public class LightColorDetector {
     public String detect(int wavelength) {
         String waveColor = "Can't see the light.";

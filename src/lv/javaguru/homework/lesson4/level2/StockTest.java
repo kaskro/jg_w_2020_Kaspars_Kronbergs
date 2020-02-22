@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson4.level2;
 
+//Ok
 public class StockTest {
 
     public void mainTest() {
