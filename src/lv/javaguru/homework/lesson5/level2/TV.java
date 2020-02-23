@@ -121,10 +121,9 @@ public class TV {
 
         TV tv = (TV) o;
 
-        //šeit izmanto "&&" un saliec visu vienā izteiksmē
-         return Objects.equals(currentChannel, tv.currentChannel) &&
-                Objects.equals(currentVolumeLevel, tv.currentVolumeLevel) &&
-                Objects.equals(turnedOn, tv.turnedOn) &&
+        return currentChannel == tv.currentChannel &&
+                currentVolumeLevel == tv.currentVolumeLevel &&
+                turnedOn == tv.turnedOn &&
                 Objects.equals(manufacturer, tv.manufacturer);
     }
 
