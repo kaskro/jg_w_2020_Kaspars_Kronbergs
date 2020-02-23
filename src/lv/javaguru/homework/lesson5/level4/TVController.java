@@ -32,7 +32,6 @@ public class TVController {
         tv.turnOn();
     }
 
-    //nav izmantota metode
     public void turnOff() {
         tv.turnOff();
     }

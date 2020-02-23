@@ -1,6 +1,7 @@
 package lv.javaguru.homework.lesson5.level4;
 
-//skatīt komentārus l2 mājas darbā
+import java.util.Objects;
+
 public class TV {
     private int currentChannel;
     private int currentVolumeLevel;
@@ -41,35 +42,72 @@ public class TV {
 
     public int nextChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel + 1 < 100 ? currentChannel + 1 : 0;
+            switchToNextChannel();
         }
         return currentChannel;
     }
+
+    private void switchToNextChannel() {
+        currentChannel = canDoNextChannel() ? currentChannel + 1 : 0;
+    }
+
+    private boolean canDoNextChannel() {
+        return currentChannel + 1 < 100;
+    }
+
 
     public int previousChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel - 1 >= 0 ? currentChannel - 1 : 99;
+            switchToPreviousChannel();
         }
         return currentChannel;
     }
 
+    private void switchToPreviousChannel() {
+        currentChannel = canDoPreviousChannel() ? currentChannel - 1 : 99;
+    }
+
+    private boolean canDoPreviousChannel() {
+        return currentChannel - 1 >= 0;
+    }
+
+
     public int increaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel += currentVolumeLevel + 1 <= 100 ? 1 : 0;
+            increaseVolumeByOne();
         }
         return currentVolumeLevel;
     }
 
+    private void increaseVolumeByOne() {
+        currentVolumeLevel += canIncreaseVolume() ? 1 : 0;
+    }
+
+    private boolean canIncreaseVolume() {
+        return currentVolumeLevel + 1 <= 100;
+    }
+
+
     public int decreaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0;
+            decreaseVolumeByOne();
         }
         return currentVolumeLevel;
     }
+
+    private void decreaseVolumeByOne() {
+        currentVolumeLevel -= canDecreaseVolume() ? 1 : 0;
+    }
+
+    private boolean canDecreaseVolume() {
+        return currentVolumeLevel - 1 >= 0;
+    }
+
 
     public void turnOn() {
         turnedOn = true;
     }
+
 
     public void turnOff() {
         turnedOn = false;
@@ -82,10 +120,10 @@ public class TV {
 
         TV tv = (TV) o;
 
-        if (currentChannel != tv.currentChannel) return false;
-        if (currentVolumeLevel != tv.currentVolumeLevel) return false;
-        if (turnedOn != tv.turnedOn) return false;
-        return manufacturer.equals(tv.manufacturer);
+        return currentChannel == tv.currentChannel &&
+                currentVolumeLevel == tv.currentVolumeLevel &&
+                turnedOn == tv.turnedOn &&
+                Objects.equals(manufacturer, tv.manufacturer);
     }
 
     @Override
