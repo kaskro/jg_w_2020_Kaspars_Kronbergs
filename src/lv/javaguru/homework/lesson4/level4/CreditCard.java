@@ -8,6 +8,26 @@ public class CreditCard {
     private double creditLimit;
     private double usedCredit;
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getCreditLimit() {
+        return creditLimit;
+    }
+
+    public double getUsedCredit() {
+        return usedCredit;
+    }
+
     CreditCard(String cardNumber, String pinCode, double balance, double creditLimit, double usedCredit) {
         this.cardNumber = cardNumber;
         this.pinCode = pinCode;
@@ -25,23 +45,31 @@ public class CreditCard {
         return canDeposit;
     }
 
-    //šī var būt arī void metode
-    public boolean withdraw(double amount, String pinCode) {
-        boolean canWithdraw = false;
-        double availableAmount = balance + (creditLimit - usedCredit); //šo var iznest atsevišķā metodē
-        boolean isEnoughMoney = availableAmount - amount > 0.001;  //šo var iznest atsevišķā metodē
-        if (this.pinCode.equals(pinCode) && isEnoughMoney) {  //šo var iznest atsevišķā metodē
-
-            //tāpat arī šo var iznest atsevišķā metodē
-            if (amount > balance) {
-                balance = 0;
-                usedCredit = amount - balance;
-            } else {
-                balance -= amount;
-            }
-            canWithdraw = true;
+    public void withdraw(double amount, String pinCode) {
+        if (canWithdrawMoney(pinCode, isEnoughMoney(amount, getAvailableAmount()))) {
+            withdrawMoney(amount);
         }
-        return canWithdraw;
+    }
+
+    private void withdrawMoney(double amount) {
+        if (amount > balance) {
+            usedCredit = amount - balance;
+            balance = 0;
+        } else {
+            balance -= amount;
+        }
+    }
+
+    private boolean canWithdrawMoney(String pinCode, boolean isEnoughMoney) {
+        return this.pinCode.equals(pinCode) && isEnoughMoney;
+    }
+
+    private boolean isEnoughMoney(double amount, double availableAmount) {
+        return availableAmount - amount > 0.001;
+    }
+
+    private double getAvailableAmount() {
+        return balance + (creditLimit - usedCredit);
     }
 
 }

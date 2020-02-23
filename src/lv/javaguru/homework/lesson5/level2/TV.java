@@ -1,5 +1,7 @@
 package lv.javaguru.homework.lesson5.level2;
 
+import java.util.Objects;
+
 public class TV {
     private int currentChannel;
     private int currentVolumeLevel;
@@ -41,33 +43,65 @@ public class TV {
     //šī metode nav notestēta
     public int nextChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel + 1 < 100 ? currentChannel + 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai mainīgajā
+            switchToNextChannel();
         }
         return currentChannel;
+    }
+
+    private void switchToNextChannel() {
+        currentChannel = canDoNextChannel() ? currentChannel + 1 : 0;
+    }
+
+    private boolean canDoNextChannel() {
+        return currentChannel + 1 < 100;
     }
 
     //šī metode nav notestēta
     public int previousChannel() {
         if (turnedOn) {
-            currentChannel = currentChannel - 1 >= 0 ? currentChannel - 1 : 99; //nosacījumu labak iznest atsevišķā metodē vai mainīgajā
+            switchToPreviousChannel();
         }
         return currentChannel;
+    }
+
+    private void switchToPreviousChannel() {
+        currentChannel = canDoPreviousChannel() ? currentChannel - 1 : 99;
+    }
+
+    private boolean canDoPreviousChannel() {
+        return currentChannel - 1 >= 0;
     }
 
     //šī metode nav notestēta
     public int increaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel += currentVolumeLevel + 1 <= 100 ? 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai arī mainīgajā
+            increaseVolumeByOne();
         }
         return currentVolumeLevel;
+    }
+
+    private void increaseVolumeByOne() {
+        currentVolumeLevel += canIncreaseVolume() ? 1 : 0;
+    }
+
+    private boolean canIncreaseVolume() {
+        return currentVolumeLevel + 1 <= 100;
     }
 
     //šī metode nav notestēta
     public int decreaseVolume() {
         if (turnedOn) {
-            currentVolumeLevel -= currentVolumeLevel - 1 >= 0 ? 1 : 0; //nosacījumu labak iznest atsevišķā metodē vai arī mainīgajā
+            decreaseVolumeByOne();
         }
         return currentVolumeLevel;
+    }
+
+    private void decreaseVolumeByOne() {
+        currentVolumeLevel -= canDecreaseVolume() ? 1 : 0;
+    }
+
+    private boolean canDecreaseVolume() {
+        return currentVolumeLevel - 1 >= 0;
     }
 
     //šī metode nav notestēta
@@ -88,10 +122,10 @@ public class TV {
         TV tv = (TV) o;
 
         //šeit izmanto "&&" un saliec visu vienā izteiksmē
-        if (currentChannel != tv.currentChannel) return false;
-        if (currentVolumeLevel != tv.currentVolumeLevel) return false;
-        if (turnedOn != tv.turnedOn) return false;
-        return manufacturer.equals(tv.manufacturer);
+         return Objects.equals(currentChannel, tv.currentChannel) &&
+                Objects.equals(currentVolumeLevel, tv.currentVolumeLevel) &&
+                Objects.equals(turnedOn, tv.turnedOn) &&
+                Objects.equals(manufacturer, tv.manufacturer);
     }
 
     @Override

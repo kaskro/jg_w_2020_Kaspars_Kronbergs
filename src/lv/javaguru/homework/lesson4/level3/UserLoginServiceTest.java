@@ -2,21 +2,44 @@ package lv.javaguru.homework.lesson4.level3;
 
 //Ok
 public class UserLoginServiceTest {
-    public void mainTest() { //testa nosaukums neizsaka neko par testa scenariju
+
+    public void shouldBeFalseWhilePasswordIsIncorrect() {
+        String wrongPassword = "ab";
+
         User user = new User();
         user.setUser("test");
         user.setPassword("abc");
-        String wrongPassword = "ab";
+
         UserLoginService loginService = new UserLoginService();
         check("testForWrongPassword", loginService.login(wrongPassword, user), false);
-        check("testForRightPassword", loginService.login(user.getPassword(), user), true);
+    }
+
+    public void shouldBeTrueWhilePasswordIsCorrect() {
+        String password = "abc";
+
+        User user = new User();
+        user.setUser("test");
+        user.setPassword(password);
+
+        UserLoginService loginService = new UserLoginService();
+        check("testForRightPassword", loginService.login(password, user), true);
+    }
+
+    public void shouldBeTrueWhenUserFails3TimesToLogIn() {
+        String password = "abc";
+        String wrongPassword = "ab";
+
+        User user = new User();
+        user.setUser("test");
+        user.setPassword(password);
+
+        UserLoginService loginService = new UserLoginService();
 
         loginService.login(wrongPassword, user);
         loginService.login(wrongPassword, user);
-        // Failed 3 login attempts
+        loginService.login(wrongPassword, user);
+
         check("testForBlockedUserIfAttemptsAre0", user.isBlocked(), true);
-        user.resetLoginAttempts();
-        check("testForBlockedUserIfAttemptsAre3", user.isBlocked(), false);
     }
 
     public void check(String testName, boolean actualResult, boolean expectedResult) {
@@ -28,8 +51,19 @@ public class UserLoginServiceTest {
         }
     }
 
+    public void check(String testName, int actualResult, int expectedResult) {
+        if (actualResult == expectedResult) {
+            System.out.println(testName + " has passed!");
+        } else {
+            System.out.println(testName + " has failed!");
+            System.out.println("Expected " + expectedResult + " but was " + actualResult);
+        }
+    }
+
     public static void main(String[] args) {
         UserLoginServiceTest testRunner = new UserLoginServiceTest();
-        testRunner.mainTest();
+        testRunner.shouldBeFalseWhilePasswordIsIncorrect();
+        testRunner.shouldBeTrueWhenUserFails3TimesToLogIn();
+        testRunner.shouldBeTrueWhilePasswordIsCorrect();
     }
 }
