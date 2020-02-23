@@ -33,22 +33,12 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-        boolean isAllValuesEqual = false;
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        if (Objects.equals(author, book.author)) {
-            if (Objects.equals(title, book.title)) {
-                if (pageCount == book.pageCount) {
-                    isAllValuesEqual = true;
-                }
-            }
-        }
-        return isAllValuesEqual;
-        //šādi ir īsāk un skaidrāk
-//        return pageCount == book.pageCount &&
-//                Objects.equals(author, book.author) &&
-//                Objects.equals(title, book.title);
+        return pageCount == book.pageCount &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(title, book.title);
     }
 
     @Override
