@@ -21,12 +21,12 @@ public class Switcher {
     }
 
     public void switchOnOff() {
-        turnedOn = !turnedOn; //šis ir mulsinoši - mainīgajam vajag citu nosaukumu
-        //šeit labak "inline" if izmantot
-        if (turnedOn) {
-            lightBulb.turnOn();
-        } else {
-            lightBulb.turnOff();
-        }
+        toggleOnOff();
+        if (turnedOn) lightBulb.turnOff();
+        else lightBulb.turnOn();
+    }
+
+    private void toggleOnOff() {
+        turnedOn = !turnedOn;
     }
 }

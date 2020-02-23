@@ -1,7 +1,7 @@
 package lv.javaguru.homework.lesson5.level5;
 
 //ok
-public class SwitcherTest {
+public class SwitcherDemo {
     public static void main(String[] args) {
         int count = 0;
         boolean turnedOn = false;

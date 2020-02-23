@@ -1,10 +1,9 @@
 package lv.javaguru.homework.lesson5.level5;
 
 public class LightBulb {
-    private final int MAX_TURN_ON_COUNT = 5; //ja tā ir konstante, tad šeit klāt arī pieliec "static"
+    private static final int MAX_TURN_ON_COUNT = 5;
     private boolean turnedOn;
     private int currentTurnOnCount;
-//lieka atstarpe
 
     public boolean isTurnedOn() {
         return turnedOn;
@@ -26,8 +25,12 @@ public class LightBulb {
         this.currentTurnOnCount = currentTurnOnCount;
     }
 
+    public void turnOff() {
+        turnedOn = false;
+    }
+
     public void turnOn() {
-        if (currentTurnOnCount < MAX_TURN_ON_COUNT && turnedOn == false) { //nosacījumu labak atsevišķā metodē iznest
+        if (canTurnOn()) {
             currentTurnOnCount++;
             turnedOn = true;
         } else {
@@ -35,8 +38,8 @@ public class LightBulb {
         }
     }
 
-    public void turnOff() {
-        turnedOn = false;
+    private boolean canTurnOn() {
+        return currentTurnOnCount < MAX_TURN_ON_COUNT && !turnedOn;
     }
 
 }
