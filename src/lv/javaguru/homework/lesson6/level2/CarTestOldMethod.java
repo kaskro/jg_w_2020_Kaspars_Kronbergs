@@ -1,6 +1,6 @@
 package lv.javaguru.homework.lesson6.level2;
 
-public class CarTest {
+public class CarTestOldMethod {
 
     Car car = new Car();
 
@@ -122,6 +122,29 @@ public class CarTest {
         check(testName, car.canAccelerate(), false);
     }
 
+    public void testForToStringFormat() {
+
+        String testName = "testForToStringFormat";
+        String model = "Audi";
+        String color = "Gray";
+        int maxSpeed = 300;
+        int currentSpeed = 0;
+        String correctFormat = "Car{" +
+                "model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", maxSpeed=" + maxSpeed +
+                ", currentSpeed=" + currentSpeed +
+                '}';
+
+        Car car = new Car();
+        car.setModel(model);
+        car.setColor(color);
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(currentSpeed);
+
+        check(testName, correctFormat, car.toString());
+    }
+
     public void mainTest() {
         testForSettingModel();
         testForSettingColor();
@@ -136,6 +159,7 @@ public class CarTest {
         testForSlowingDown();
         testForSlowingDownWhenCarSpeedIsZero();
         testForSpeedUp();
+        testForToStringFormat();
     }
 
     public void check(String testName, int actualResult, int expectedResult) {
@@ -167,7 +191,7 @@ public class CarTest {
 
 
     public static void main(String[] args) {
-        CarTest testRunner = new CarTest();
+        CarTestOldMethod testRunner = new CarTestOldMethod();
         testRunner.mainTest();
     }
 }

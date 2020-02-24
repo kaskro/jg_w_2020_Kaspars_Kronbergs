@@ -62,11 +62,19 @@ public class Car {
     }
 
     public void accelerate() {
-        currentSpeed += currentSpeed < maxSpeed ? 1 : 0;
+        increaseSpeed();
+    }
+
+    private void increaseSpeed() {
+        currentSpeed += canAccelerate() ? 1 : 0;
     }
 
     public void slowDown() {
-        currentSpeed -= currentSpeed > 0 ? 1 : 0;
+        decreaseSpeed();
+    }
+
+    private void decreaseSpeed() {
+        currentSpeed -= isDriving() ? 1 : 0;
     }
 
     public boolean isDriving() {
@@ -78,7 +86,7 @@ public class Car {
     }
 
     public void speedUp() {
-        while (currentSpeed < maxSpeed) {
+        while (canAccelerate()) {
             accelerate();
         }
     }
