@@ -1,15 +1,21 @@
 package lv.javaguru.homework.lesson5.level3;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepartmentTest {
 
+    private Department department;
+
+    @BeforeEach
+    void setUp() {
+        department = new Department();
+    }
+
     @Test
     void shouldGetName() {
-
-        Department department = new Department();
 
         assertNull(department.getName());
     }
@@ -19,7 +25,6 @@ class DepartmentTest {
 
         String name = "Demo";
 
-        Department department = new Department();
         department.setName(name);
 
         assertEquals(name, department.getName());
@@ -27,8 +32,6 @@ class DepartmentTest {
 
     @Test
     void shouldGetCompany() {
-
-        Department department = new Department();
 
         assertNull(department.getCompany());
     }
@@ -40,7 +43,6 @@ class DepartmentTest {
         company.setName("Demo");
         company.setRegistrationNumber("12341234");
 
-        Department department = new Department();
         department.setCompany(company);
 
         assertEquals(company, department.getCompany());
@@ -102,7 +104,6 @@ class DepartmentTest {
                 ", company=" + company.getName() +
                 '}';
 
-        Department department = new Department();
         department.setName(name);
         department.setCompany(company);
 

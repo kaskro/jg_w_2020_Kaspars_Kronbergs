@@ -1,15 +1,31 @@
 package lv.javaguru.homework.lesson5.level3;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeTest {
 
+    private Employee employee;
+    private Company company;
+    private Department department;
+
+    @BeforeEach
+    void setUp() {
+        employee = new Employee();
+
+        company = new Company();
+        company.setName("Demo");
+        company.setRegistrationNumber("1234512345");
+
+        department = new Department();
+        department.setName("Testing");
+        department.setCompany(company);
+    }
+
     @Test
     void shouldGetContractNumber() {
-
-        Employee employee = new Employee();
 
         assertNull(employee.getContractNumber());
     }
@@ -19,7 +35,6 @@ class EmployeeTest {
 
         String contractNumber = "12345";
 
-        Employee employee = new Employee();
         employee.setContractNumber(contractNumber);
 
         assertEquals(contractNumber, employee.getContractNumber());
@@ -27,8 +42,6 @@ class EmployeeTest {
 
     @Test
     void shouldGetSalary() {
-
-        Employee employee = new Employee();
 
         assertEquals(0, employee.getSalary());
     }
@@ -38,7 +51,6 @@ class EmployeeTest {
 
         double salary = 500;
 
-        Employee employee = new Employee();
         employee.setSalary(salary);
 
         assertEquals(salary, employee.getSalary());
@@ -47,23 +59,12 @@ class EmployeeTest {
     @Test
     void shouldGetDepartment() {
 
-        Employee employee = new Employee();
-
         assertNull(employee.getDepartment());
     }
 
     @Test
     void shouldSetDepartment() {
 
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("1234512345");
-
-        Department department = new Department();
-        department.setName("Testing");
-        department.setCompany(company);
-
-        Employee employee = new Employee();
         employee.setDepartment(department);
 
         assertEquals(department, employee.getDepartment());
@@ -75,14 +76,6 @@ class EmployeeTest {
 
         String contractNumber = "1234";
         double salary = 500;
-
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("1234512345");
-
-        Department department = new Department();
-        department.setName("Testing");
-        department.setCompany(company);
 
         Employee firstEmployee = new Employee();
         firstEmployee.setContractNumber(contractNumber);
@@ -99,14 +92,6 @@ class EmployeeTest {
 
     @Test
     void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
-
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("1234512345");
-
-        Department department = new Department();
-        department.setName("Testing");
-        department.setCompany(company);
 
         Employee firstEmployee = new Employee();
         firstEmployee.setContractNumber("12345");
@@ -127,21 +112,12 @@ class EmployeeTest {
         String contractNumber = "1234";
         double salary = 500;
 
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("1234512345");
-
-        Department department = new Department();
-        department.setName("Testing");
-        department.setCompany(company);
-
         String correctFormat = "Employee{" +
                 "contractNumber='" + contractNumber + '\'' +
                 ", salary=" + salary +
                 ", department=" + department.getName() +
                 '}';
 
-        Employee employee = new Employee();
         employee.setContractNumber(contractNumber);
         employee.setSalary(salary);
         employee.setDepartment(department);

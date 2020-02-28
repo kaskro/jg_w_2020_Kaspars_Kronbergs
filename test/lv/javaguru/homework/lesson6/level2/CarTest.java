@@ -1,15 +1,21 @@
 package lv.javaguru.homework.lesson6.level2;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
+    private Car car;
+
+    @BeforeEach
+    void setUp() {
+        car = new Car();
+    }
+
     @Test
     void shouldGetModel() {
-
-        Car car = new Car();
 
         assertNull(car.getModel());
     }
@@ -19,7 +25,6 @@ class CarTest {
 
         String model = "Audi";
 
-        Car car = new Car();
         car.setModel(model);
 
         assertEquals(model, car.getModel());
@@ -27,8 +32,6 @@ class CarTest {
 
     @Test
     void shouldGetColor() {
-
-        Car car = new Car();
 
         assertNull(car.getColor());
     }
@@ -38,7 +41,6 @@ class CarTest {
 
         String color = "Red";
 
-        Car car = new Car();
         car.setColor(color);
 
         assertEquals(color, car.getColor());
@@ -46,8 +48,6 @@ class CarTest {
 
     @Test
     void shouldGetMaxSpeed() {
-
-        Car car = new Car();
 
         assertEquals(0, car.getMaxSpeed());
     }
@@ -57,7 +57,6 @@ class CarTest {
 
         int maxSpeed = 100;
 
-        Car car = new Car();
         car.setMaxSpeed(maxSpeed);
 
         assertEquals(maxSpeed, car.getMaxSpeed());
@@ -65,8 +64,6 @@ class CarTest {
 
     @Test
     void shouldGetCurrentSpeed() {
-
-        Car car = new Car();
 
         assertEquals(0, car.getCurrentSpeed());
     }
@@ -76,12 +73,10 @@ class CarTest {
 
         int currentSpeed = 10;
 
-        Car car = new Car();
         car.setCurrentSpeed(currentSpeed);
 
         assertEquals(currentSpeed, car.getCurrentSpeed());
     }
-
 
     @Test
     void shouldAccelerateByOne() {
@@ -89,7 +84,6 @@ class CarTest {
         int currentSpeed = 0;
         int maxSpeed = 100;
 
-        Car car = new Car();
         car.setMaxSpeed(maxSpeed);
         car.setCurrentSpeed(currentSpeed);
         car.accelerate();
@@ -102,7 +96,6 @@ class CarTest {
 
         int maxSpeed = 100;
 
-        Car car = new Car();
         car.setMaxSpeed(maxSpeed);
         car.setCurrentSpeed(maxSpeed);
         car.accelerate();
@@ -116,7 +109,6 @@ class CarTest {
         int currentSpeed = 10;
         int maxSpeed = 100;
 
-        Car car = new Car();
         car.setCurrentSpeed(currentSpeed);
         car.setMaxSpeed(maxSpeed);
         car.slowDown();
@@ -130,7 +122,6 @@ class CarTest {
         int currentSpeed = 0;
         int maxSpeed = 100;
 
-        Car car = new Car();
         car.setCurrentSpeed(currentSpeed);
         car.setMaxSpeed(maxSpeed);
         car.slowDown();
@@ -139,9 +130,7 @@ class CarTest {
     }
 
     @Test
-    void shouldBeFalseWhenisDrivingNotSet() {
-
-        Car car = new Car();
+    void shouldBeFalseWhenIsDrivingNotSet() {
 
         assertFalse(car.isDriving());
     }
@@ -151,7 +140,6 @@ class CarTest {
 
         int maxSpeed = 200;
 
-        Car car = new Car();
         car.setCurrentSpeed(maxSpeed);
         car.setMaxSpeed(maxSpeed);
 
@@ -164,7 +152,6 @@ class CarTest {
         int maxSpeed = 200;
         int currentSpeed = 10;
 
-        Car car = new Car();
         car.setCurrentSpeed(currentSpeed);
         car.setMaxSpeed(maxSpeed);
 
@@ -177,7 +164,6 @@ class CarTest {
         int maxSpeed = 400;
         int currentSpeed = 0;
 
-        Car car = new Car();
         car.setCurrentSpeed(currentSpeed);
         car.setMaxSpeed(maxSpeed);
         car.speedUp();
@@ -245,7 +231,6 @@ class CarTest {
                 ", currentSpeed=" + currentSpeed +
                 '}';
 
-        Car car = new Car();
         car.setModel(model);
         car.setColor(color);
         car.setMaxSpeed(maxSpeed);

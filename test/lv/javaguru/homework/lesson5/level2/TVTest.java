@@ -1,15 +1,21 @@
 package lv.javaguru.homework.lesson5.level2;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TVTest {
 
+    private TV tv;
+
+    @BeforeEach
+    void setUp() {
+        tv = new TV();
+    }
+
     @Test
     void shouldGetCurrentChannel() {
-
-        TV tv = new TV();
 
         assertEquals(0, tv.getCurrentChannel());
     }
@@ -19,7 +25,6 @@ class TVTest {
 
         int testValue = 10;
 
-        TV tv = new TV();
         tv.setCurrentChannel(testValue);
 
         assertEquals(testValue, tv.getCurrentChannel());
@@ -27,8 +32,6 @@ class TVTest {
 
     @Test
     void shouldGetCurrentVolumeLevel() {
-
-        TV tv = new TV();
 
         assertEquals(0, tv.getCurrentVolumeLevel());
     }
@@ -38,7 +41,6 @@ class TVTest {
 
         int testValue = 40;
 
-        TV tv = new TV();
         tv.setCurrentVolumeLevel(testValue);
 
         assertEquals(testValue, tv.getCurrentVolumeLevel());
@@ -46,8 +48,6 @@ class TVTest {
 
     @Test
     void shouldGetManufacturer() {
-
-        TV tv = new TV();
 
         assertNull(tv.getManufacturer());
     }
@@ -57,7 +57,6 @@ class TVTest {
 
         String testValue = "Samsung";
 
-        TV tv = new TV();
         tv.setManufacturer(testValue);
 
         assertEquals(testValue, tv.getManufacturer());
@@ -66,15 +65,12 @@ class TVTest {
     @Test
     void shouldIsTurnedOnReturnFalse() {
 
-        TV tv = new TV();
-
         assertFalse(tv.isTurnedOn());
     }
 
     @Test
     void shouldSetTurnedOnToTrue() {
 
-        TV tv = new TV();
         tv.setTurnedOn(true);
 
         assertTrue(tv.isTurnedOn());
@@ -83,7 +79,6 @@ class TVTest {
     @Test
     void shouldNotChangeChannelToNextWhileTVisOff() {
 
-        TV tv = new TV();
         tv.nextChannel();
 
         assertEquals(0, tv.getCurrentChannel());
@@ -92,7 +87,6 @@ class TVTest {
     @Test
     void shouldChangeChannelToNextWhileTVIsOn() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.nextChannel();
 
@@ -102,7 +96,6 @@ class TVTest {
     @Test
     void shouldChangeChannelTo0WhenGetsAbove99() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.setCurrentChannel(99);
         tv.nextChannel();
@@ -113,7 +106,6 @@ class TVTest {
     @Test
     void shouldNotChangeChannelToPreviousWhileTVisOff() {
 
-        TV tv = new TV();
         tv.previousChannel();
 
         assertEquals(0, tv.getCurrentChannel());
@@ -122,7 +114,6 @@ class TVTest {
     @Test
     void shouldChangeChannelToPreviousWhileTVIsOn() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.nextChannel();
         tv.nextChannel();
@@ -134,7 +125,6 @@ class TVTest {
     @Test
     void shouldChangeChannelTo99WhenGetsBelow0() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.setCurrentChannel(0);
         tv.previousChannel();
@@ -145,7 +135,6 @@ class TVTest {
     @Test
     void shouldNotIncreaseVolumeWhileTVIsOff() {
 
-        TV tv = new TV();
         tv.increaseVolume();
 
         assertEquals(0, tv.getCurrentVolumeLevel());
@@ -154,7 +143,6 @@ class TVTest {
     @Test
     void shouldIncreaseVolumeBy1WhileTVIsOn() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.increaseVolume();
 
@@ -164,7 +152,6 @@ class TVTest {
     @Test
     void shouldStayAt100WhenVolumeIsIncreasedAbove100() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.setCurrentVolumeLevel(100);
         tv.increaseVolume();
@@ -176,7 +163,6 @@ class TVTest {
     @Test
     void shouldNotDecreaseVolumeWhileTVIsOff() {
 
-        TV tv = new TV();
         tv.decreaseVolume();
 
         assertEquals(0, tv.getCurrentVolumeLevel());
@@ -185,7 +171,6 @@ class TVTest {
     @Test
     void shouldDecreaseVolumeBy1WhileTVIsOn() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.increaseVolume();
         tv.increaseVolume();
@@ -197,7 +182,6 @@ class TVTest {
     @Test
     void shouldStayAt0WhenVolumeIsDecreasedBelow0() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.setCurrentVolumeLevel(0);
         tv.decreaseVolume();
@@ -209,7 +193,6 @@ class TVTest {
     @Test
     void shouldTurnOnTheTV() {
 
-        TV tv = new TV();
         tv.turnOn();
 
         assertTrue(tv.isTurnedOn());
@@ -218,7 +201,6 @@ class TVTest {
     @Test
     void shouldTurnOffTheTV() {
 
-        TV tv = new TV();
         tv.turnOn();
         tv.turnOff();
 
@@ -284,8 +266,6 @@ class TVTest {
                 ", manufacturer='" + manufacturer + '\'' +
                 ", turnedOn=" + turnedOn +
                 '}';
-
-        TV tv = new TV();
 
         tv.setTurnedOn(turnedOn);
         tv.setCurrentChannel(currentChannel);

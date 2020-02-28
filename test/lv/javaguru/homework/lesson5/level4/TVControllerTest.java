@@ -1,15 +1,28 @@
 package lv.javaguru.homework.lesson5.level4;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TVControllerTest {
 
+    private TVController tvController;
+    private TV tv;
+
+    @BeforeEach
+    void setUp() {
+        tvController = new TVController();
+
+        tv = new TV();
+        tv.setManufacturer("Sony");
+        tv.setTurnedOn(true);
+        tv.setCurrentChannel(1);
+        tv.setCurrentVolumeLevel(50);
+    }
+
     @Test
     void shouldGetTV() {
-
-        TVController tvController = new TVController();
 
         assertNull(tvController.getTv());
     }
@@ -17,13 +30,6 @@ class TVControllerTest {
     @Test
     void shouldSetTV() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
 
         assertEquals(tv, tvController.getTv());
@@ -32,13 +38,6 @@ class TVControllerTest {
     @Test
     void shouldChangeToNextChannelWhileTVIsOn() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.nextChannel();
 
@@ -48,13 +47,6 @@ class TVControllerTest {
     @Test
     void shouldChangeToPreviousChannelWhileTVIsOn() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.previousChannel();
 
@@ -64,13 +56,7 @@ class TVControllerTest {
     @Test
     void shouldNotChangeToNextChannelWhileTVIsOff() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
         tv.setTurnedOn(false);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.nextChannel();
 
@@ -80,13 +66,7 @@ class TVControllerTest {
     @Test
     void shouldNotChangeToPreviousChannelWhileTVIsOff() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
         tv.setTurnedOn(false);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.previousChannel();
 
@@ -96,13 +76,6 @@ class TVControllerTest {
     @Test
     void shouldIncreaseVolumeLevelWhileTVIsOn() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.increaseVolume();
 
@@ -112,13 +85,6 @@ class TVControllerTest {
     @Test
     void shouldDecreaseVolumeLevelWhileTVIsOn() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.decreaseVolume();
 
@@ -128,13 +94,7 @@ class TVControllerTest {
     @Test
     void shouldNotIncreaseVolumeLevelWhileTVIsOff() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
         tv.setTurnedOn(false);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.increaseVolume();
 
@@ -144,13 +104,7 @@ class TVControllerTest {
     @Test
     void shouldNotDecreaseVolumeLevelWhileTVIsOff() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
         tv.setTurnedOn(false);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.decreaseVolume();
 
@@ -160,13 +114,7 @@ class TVControllerTest {
     @Test
     void shouldTurnTVOn() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
         tv.setTurnedOn(false);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.turnOn();
 
@@ -176,13 +124,6 @@ class TVControllerTest {
     @Test
     void shouldTurnTVOff() {
 
-        TV tv = new TV();
-        tv.setManufacturer("Sony");
-        tv.setTurnedOn(true);
-        tv.setCurrentChannel(1);
-        tv.setCurrentVolumeLevel(50);
-
-        TVController tvController = new TVController();
         tvController.setTv(tv);
         tvController.turnOff();
 

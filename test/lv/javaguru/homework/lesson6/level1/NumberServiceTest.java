@@ -1,10 +1,18 @@
 package lv.javaguru.homework.lesson6.level1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NumberServiceTest {
+
+    private NumberService numberService;
+
+    @BeforeEach
+    void setUp() {
+        numberService = new NumberService();
+    }
 
     @Test
     void shouldReturnSumInRange() {
@@ -12,8 +20,6 @@ class NumberServiceTest {
         int from = 10;
         int to = 15;
         int expectedResult = 75;
-
-        NumberService numberService = new NumberService();
 
         assertEquals(expectedResult, numberService.sumInRange(from, to));
     }
@@ -25,8 +31,6 @@ class NumberServiceTest {
         int to = 10;
         int expectedResult = 75;
 
-        NumberService numberService = new NumberService();
-
         assertEquals(expectedResult, numberService.sumInRange(from, to));
     }
 
@@ -37,8 +41,6 @@ class NumberServiceTest {
         int to = 19;
         int expectedResult = 5;
 
-        NumberService numberService = new NumberService();
-
         assertEquals(expectedResult, numberService.getEvenNumberCount(from, to));
     }
 
@@ -48,8 +50,6 @@ class NumberServiceTest {
         int from = 19;
         int to = 9;
         int expectedResult = 5;
-
-        NumberService numberService = new NumberService();
 
         assertEquals(expectedResult, numberService.getEvenNumberCount(from, to));
     }

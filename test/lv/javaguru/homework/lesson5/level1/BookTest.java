@@ -1,15 +1,21 @@
 package lv.javaguru.homework.lesson5.level1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
 
+    private Book book;
+
+    @BeforeEach
+    void setUp() {
+        book = new Book();
+    }
+
     @Test
     void shouldGetAuthor() {
-
-        Book book = new Book();
 
         assertNull(book.getAuthor());
     }
@@ -19,7 +25,6 @@ class BookTest {
 
         String author = "Cesar";
 
-        Book book = new Book();
         book.setAuthor(author);
 
         assertEquals(author, book.getAuthor());
@@ -27,8 +32,6 @@ class BookTest {
 
     @Test
     void shouldGetTitle() {
-
-        Book book = new Book();
 
         assertNull(book.getTitle());
     }
@@ -38,7 +41,6 @@ class BookTest {
 
         String title = "Demo";
 
-        Book book = new Book();
         book.setTitle(title);
 
         assertEquals(title, book.getTitle());
@@ -46,8 +48,6 @@ class BookTest {
 
     @Test
     void shouldGetPageCount() {
-
-        Book book = new Book();
 
         assertEquals(0, book.getPageCount());
     }
@@ -57,7 +57,6 @@ class BookTest {
 
         int pageCount = 10;
 
-        Book book = new Book();
         book.setPageCount(pageCount);
 
         assertEquals(pageCount, book.getPageCount());
@@ -115,7 +114,7 @@ class BookTest {
                 ", pageCount=" + pageCount +
                 '}';
 
-        Book book = new Book();
+
         book.setAuthor(author);
         book.setTitle(title);
         book.setPageCount(pageCount);
