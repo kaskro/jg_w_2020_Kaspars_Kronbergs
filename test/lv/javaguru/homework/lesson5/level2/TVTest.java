@@ -14,6 +14,8 @@ class TVTest {
         tv = new TV();
     }
 
+    //skatīt iepriekš komentāru pie gettera testa
+    //principā get un set metodēm pietiktu ar vienu testu, kur ieseto vertību un tad pārbauda, kas tur ir iekšā
     @Test
     void shouldGetCurrentChannel() {
 
@@ -207,6 +209,7 @@ class TVTest {
         assertFalse(tv.isTurnedOn());
     }
 
+    //šim piemērotāks nosaukums būtu: shouldBeEqualsTvs
     @Test
     void shouldReturnTrueWhenTwoObjectsAreEqual() {
 
@@ -215,6 +218,8 @@ class TVTest {
         int currentVolumeLevel = 50;
         String manufacturer = "Samsung";
 
+        //šādu objektu veidošanu droši var iznest atsevišķā metodē
+        //un nodot stāvokļus izmantojot parametrus
         TV firstTV = new TV();
 
         firstTV.setTurnedOn(turnedOn);
@@ -232,9 +237,11 @@ class TVTest {
         assertTrue(firstTV.equals(secondTV));
     }
 
+    //šim piemērotāks nosaukums būtu: shouldNotBeEqualsTvs
     @Test
     void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
-
+        //šādu objektu veidošanu droši var iznest atsevišķā metodē
+        //un nodot stāvokļus izmantojot parametrus
         TV firstTV = new TV();
 
         firstTV.setTurnedOn(true);

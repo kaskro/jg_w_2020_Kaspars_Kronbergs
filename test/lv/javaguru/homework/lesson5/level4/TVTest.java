@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//skatīt iepriekšējosa komentārus
 class TVTest {
 
     private lv.javaguru.homework.lesson5.level2.TV tv;

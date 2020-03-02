@@ -72,6 +72,9 @@ class SwitcherTest {
     void shouldBeFalseWhenSwitchOnOffIsCalledMoreThanFiveTimes() {
 
         switcher.setLightBulb(lightBulb);
+        //centies izvairīties testos rakstīt pārak daudz komplicētu loģiku
+        //jo tad var sanakt, ka vajag arī to testēt :)
+        //šeit drošī var uzrakstīt 6 rindiņas ar metodes izsaukumu
         for(int i = 0; i < 7; i++){
             switcher.switchOnOff();
         }

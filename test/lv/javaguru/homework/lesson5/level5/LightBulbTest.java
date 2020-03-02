@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//skatīt iepriekšējosa komentārus
 class LightBulbTest {
 
     private LightBulb lightBulb;

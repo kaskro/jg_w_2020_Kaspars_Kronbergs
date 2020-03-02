@@ -14,6 +14,17 @@ class BookTest {
         book = new Book();
     }
 
+    //šī testa nosaukums netbilst tam ko tas test
+    //lai pārbaudītu, ka geters atgriež pareizu stāvokli, tad šis stavoklis pirms tam ir jāieseto
+    //un tad j apārbaudu vai iestotā vērtība ir vienāda ar to ko atgriež getters
+    //piemēram
+    @Test
+    void shouldGetAuthor_() {
+        final String author = "Mark Tven";
+        book.setAuthor(author);
+        assertEquals(author, book.getAuthor());
+    }
+
     @Test
     void shouldGetAuthor() {
 
