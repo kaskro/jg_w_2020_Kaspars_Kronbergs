@@ -16,13 +16,7 @@ class DepartmentTest {
     }
 
     @Test
-    void shouldGetName() {
-
-        assertNull(department.getName());
-    }
-
-    @Test
-    void shouldSetName() {
+    void shouldSetAndGetName() {
 
         String name = "Demo";
 
@@ -32,17 +26,9 @@ class DepartmentTest {
     }
 
     @Test
-    void shouldGetCompany() {
+    void shouldSetAndGetCompany() {
 
-        assertNull(department.getCompany());
-    }
-
-    @Test
-    void shouldSetCompany() {
-
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("12341234");
+        Company company = createCompany("Demo", "12341234");
 
         department.setCompany(company);
 
@@ -50,45 +36,45 @@ class DepartmentTest {
     }
 
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsDepartments() {
 
         String name = "Testing";
 
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("12341234");
+        Company company = createCompany("Demo", "12341234");
 
-        Department firstDepartment = new Department();
-        firstDepartment.setName(name);
-        firstDepartment.setCompany(company);
+        Department firstDepartment = createDepartment(name, company);
 
-        Department secondDepartment = new Department();
-        secondDepartment.setName(name);
-        secondDepartment.setCompany(company);
+        Department secondDepartment = createDepartment(name, company);
 
         assertTrue(firstDepartment.equals(secondDepartment));
     }
 
+    private Department createDepartment(String name, Company company) {
+        department = new Department();
+        department.setName(name);
+        department.setCompany(company);
+        return department;
+    }
+
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsDepartments() {
 
-        Company firstCompany = new Company();
-        firstCompany.setName("Demo");
-        firstCompany.setRegistrationNumber("12341234");
+        Company firstCompany = createCompany("Demo", "12341234");
 
-        Department firstDepartment = new Department();
-        firstDepartment.setName("Testing");
-        firstDepartment.setCompany(firstCompany);
+        Department firstDepartment = createDepartment("Testing", firstCompany);
 
-        Company secondCompany = new Company();
-        secondCompany.setName("Nemo");
-        secondCompany.setRegistrationNumber("11111111");
+        Company secondCompany = createCompany("Nemo", "11111111");
 
-        Department secondDepartment = new Department();
-        secondDepartment.setName("Coding");
-        secondDepartment.setCompany(secondCompany);
+        Department secondDepartment = createDepartment("Coding", secondCompany);
 
         assertFalse(firstDepartment.equals(secondDepartment));
+    }
+
+    private Company createCompany(String demo, String s) {
+        Company company = new Company();
+        company.setName(demo);
+        company.setRegistrationNumber(s);
+        return company;
     }
 
     @Test
@@ -96,9 +82,7 @@ class DepartmentTest {
 
         String name = "Testing";
 
-        Company company = new Company();
-        company.setName("Demo");
-        company.setRegistrationNumber("12341234");
+        Company company = createCompany("Demo", "12341234");
 
         String correctFormat = "Department{" +
                 "name='" + name + '\'' +

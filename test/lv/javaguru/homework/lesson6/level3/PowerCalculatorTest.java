@@ -2,7 +2,7 @@ package lv.javaguru.homework.lesson6.level3;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PowerCalculatorTest {
 

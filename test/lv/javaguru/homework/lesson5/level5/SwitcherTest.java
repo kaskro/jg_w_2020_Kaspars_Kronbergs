@@ -15,19 +15,17 @@ class SwitcherTest {
 
         switcher = new Switcher();
 
+        createLightBulb();
+    }
+
+    private void createLightBulb() {
         lightBulb = new LightBulb();
         lightBulb.setTurnedOn(false);
         lightBulb.setCurrentTurnOnCount(0);
     }
 
     @Test
-    void shouldGetLightBulb() {
-
-        assertNull(switcher.getLightBulb());
-    }
-
-    @Test
-    void setLightBulb() {
+    void shouldSetAndGetLightBulb() {
 
         switcher.setLightBulb(lightBulb);
 
@@ -35,13 +33,7 @@ class SwitcherTest {
     }
 
     @Test
-    void shouldBeFalseWhenIsTurnedOnIsNotSet() {
-
-        assertFalse(switcher.isTurnedOn());
-    }
-
-    @Test
-    void shouldSetTurnedOn() {
+    void shouldSetAndGetTurnedOn() {
 
         switcher.setTurnedOn(true);
 
@@ -75,9 +67,13 @@ class SwitcherTest {
         //centies izvairīties testos rakstīt pārak daudz komplicētu loģiku
         //jo tad var sanakt, ka vajag arī to testēt :)
         //šeit drošī var uzrakstīt 6 rindiņas ar metodes izsaukumu
-        for(int i = 0; i < 7; i++){
-            switcher.switchOnOff();
-        }
+        switcher.switchOnOff();
+        switcher.switchOnOff();
+        switcher.switchOnOff();
+        switcher.switchOnOff();
+        switcher.switchOnOff();
+        switcher.switchOnOff();
+        switcher.switchOnOff();
 
         assertFalse(lightBulb.isTurnedOn());
     }

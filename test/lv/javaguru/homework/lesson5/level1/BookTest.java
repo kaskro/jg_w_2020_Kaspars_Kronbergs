@@ -14,25 +14,8 @@ class BookTest {
         book = new Book();
     }
 
-    //šī testa nosaukums netbilst tam ko tas test
-    //lai pārbaudītu, ka geters atgriež pareizu stāvokli, tad šis stavoklis pirms tam ir jāieseto
-    //un tad j apārbaudu vai iestotā vērtība ir vienāda ar to ko atgriež getters
-    //piemēram
     @Test
-    void shouldGetAuthor_() {
-        final String author = "Mark Tven";
-        book.setAuthor(author);
-        assertEquals(author, book.getAuthor());
-    }
-
-    @Test
-    void shouldGetAuthor() {
-
-        assertNull(book.getAuthor());
-    }
-
-    @Test
-    void shouldSetAuthor() {
+    void shouldSetAndGetAuthor() {
 
         String author = "Cesar";
 
@@ -42,13 +25,7 @@ class BookTest {
     }
 
     @Test
-    void shouldGetTitle() {
-
-        assertNull(book.getTitle());
-    }
-
-    @Test
-    void shouldSetTitle() {
+    void shouldSetAndGetTitle() {
 
         String title = "Demo";
 
@@ -74,41 +51,37 @@ class BookTest {
     }
 
     @Test
-    void shouldBeTrueWhenObjectsAreEqual() {
+    void shouldBeEqualsBooks() {
 
         String author = "John Doe";
         String title = "How to be";
         int pageCount = 100;
 
-        Book firstBook = new Book();
-        firstBook.setAuthor(author);
-        firstBook.setTitle(title);
-        firstBook.setPageCount(pageCount);
+        Book firstBook = createBook(author, title, pageCount);
 
-        Book secondBook = new Book();
-        secondBook.setAuthor(author);
-        secondBook.setTitle(title);
-        secondBook.setPageCount(pageCount);
+        Book secondBook = createBook(author, title, pageCount);
 
         assertTrue(firstBook.equals(secondBook));
     }
 
+    private Book createBook(String author, String title, int pageCount) {
+        book = new Book();
+        book.setAuthor(author);
+        book.setTitle(title);
+        book.setPageCount(pageCount);
+        return book;
+    }
+
     @Test
-    void shouldBeFalseWhenObjectsAreNotEqual() {
+    void shouldNotBeEqualsBooks() {
 
         String author = "John Doe";
         String title = "How to be";
         int pageCount = 100;
 
-        Book firstBook = new Book();
-        firstBook.setAuthor(author);
-        firstBook.setTitle(title);
-        firstBook.setPageCount(pageCount);
+        Book firstBook = createBook(author, title, pageCount);
 
-        Book secondBook = new Book();
-        secondBook.setAuthor("Wrong Doe");
-        secondBook.setTitle(title);
-        secondBook.setPageCount(101);
+        Book secondBook = createBook("Wrong Doe", title, 101);
 
         assertFalse(firstBook.equals(secondBook));
     }

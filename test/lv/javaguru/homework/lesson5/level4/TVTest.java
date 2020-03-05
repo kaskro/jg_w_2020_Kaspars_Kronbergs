@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//skatīt iepriekšējosa komentārus
 class TVTest {
 
     private lv.javaguru.homework.lesson5.level2.TV tv;
@@ -17,13 +16,7 @@ class TVTest {
     }
 
     @Test
-    void shouldGetCurrentChannel() {
-
-        assertEquals(0, tv.getCurrentChannel());
-    }
-
-    @Test
-    void shouldSetCurrentChannel() {
+    void shouldSetAndGetCurrentChannel() {
 
         int testValue = 10;
 
@@ -33,13 +26,7 @@ class TVTest {
     }
 
     @Test
-    void shouldGetCurrentVolumeLevel() {
-
-        assertEquals(0, tv.getCurrentVolumeLevel());
-    }
-
-    @Test
-    void shouldSetCurrentVolumeLevel() {
+    void shouldSetAndGetCurrentVolumeLevel() {
 
         int testValue = 40;
 
@@ -49,13 +36,7 @@ class TVTest {
     }
 
     @Test
-    void shouldGetManufacturer() {
-
-        assertNull(tv.getManufacturer());
-    }
-
-    @Test
-    void shouldSetManufacturer() {
+    void shouldSetAndGetManufacturer() {
 
         String testValue = "Samsung";
 
@@ -65,13 +46,7 @@ class TVTest {
     }
 
     @Test
-    void shouldIsTurnedOnReturnFalse() {
-
-        assertFalse(tv.isTurnedOn());
-    }
-
-    @Test
-    void shouldSetTurnedOnToTrue() {
+    void shouldSetAndGetIsTurnedOn() {
 
         tv.setTurnedOn(true);
 
@@ -209,47 +184,42 @@ class TVTest {
         assertFalse(tv.isTurnedOn());
     }
 
+    //šim piemērotāks nosaukums būtu: shouldBeEqualsTvs
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsTVs() {
 
         boolean turnedOn = true;
         int currentChannel = 10;
         int currentVolumeLevel = 50;
         String manufacturer = "Samsung";
 
-        lv.javaguru.homework.lesson5.level2.TV firstTV = new lv.javaguru.homework.lesson5.level2.TV();
+        //šādu objektu veidošanu droši var iznest atsevišķā metodē
+        //un nodot stāvokļus izmantojot parametrus
+        lv.javaguru.homework.lesson5.level2.TV firstTV = createTv(turnedOn, currentChannel, currentVolumeLevel, manufacturer);
 
-        firstTV.setTurnedOn(turnedOn);
-        firstTV.setCurrentChannel(currentChannel);
-        firstTV.setCurrentVolumeLevel(currentVolumeLevel);
-        firstTV.setManufacturer(manufacturer);
-
-        lv.javaguru.homework.lesson5.level2.TV secondTV = new lv.javaguru.homework.lesson5.level2.TV();
-
-        secondTV.setTurnedOn(turnedOn);
-        secondTV.setCurrentChannel(currentChannel);
-        secondTV.setCurrentVolumeLevel(currentVolumeLevel);
-        secondTV.setManufacturer(manufacturer);
+        lv.javaguru.homework.lesson5.level2.TV secondTV = createTv(turnedOn, currentChannel, currentVolumeLevel, manufacturer);
 
         assertTrue(firstTV.equals(secondTV));
     }
 
+    private lv.javaguru.homework.lesson5.level2.TV createTv(boolean turnedOn, int currentChannel, int currentVolumeLevel, String manufacturer) {
+        tv = new lv.javaguru.homework.lesson5.level2.TV();
+
+        tv.setTurnedOn(turnedOn);
+        tv.setCurrentChannel(currentChannel);
+        tv.setCurrentVolumeLevel(currentVolumeLevel);
+        tv.setManufacturer(manufacturer);
+        return tv;
+    }
+
+    //šim piemērotāks nosaukums būtu: shouldNotBeEqualsTvs
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsTVs() {
+        //šādu objektu veidošanu droši var iznest atsevišķā metodē
+        //un nodot stāvokļus izmantojot parametrus
+        lv.javaguru.homework.lesson5.level2.TV firstTV = createTv(true, 10, 30, "Demo 1");
 
-        lv.javaguru.homework.lesson5.level2.TV firstTV = new lv.javaguru.homework.lesson5.level2.TV();
-
-        firstTV.setTurnedOn(true);
-        firstTV.setCurrentChannel(10);
-        firstTV.setCurrentVolumeLevel(30);
-        firstTV.setManufacturer("Demo 1");
-
-        lv.javaguru.homework.lesson5.level2.TV secondTV = new TV();
-
-        secondTV.setTurnedOn(false);
-        secondTV.setCurrentChannel(10);
-        secondTV.setCurrentVolumeLevel(30);
-        secondTV.setManufacturer("Demo 2");
+        TV secondTV = createTv(false, 10, 30, "Demo 2");
 
         assertFalse(firstTV.equals(secondTV));
     }

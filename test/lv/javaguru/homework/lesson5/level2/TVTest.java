@@ -14,16 +14,8 @@ class TVTest {
         tv = new TV();
     }
 
-    //skatīt iepriekš komentāru pie gettera testa
-    //principā get un set metodēm pietiktu ar vienu testu, kur ieseto vertību un tad pārbauda, kas tur ir iekšā
     @Test
-    void shouldGetCurrentChannel() {
-
-        assertEquals(0, tv.getCurrentChannel());
-    }
-
-    @Test
-    void shouldSetCurrentChannel() {
+    void shouldSetAndGetCurrentChannel() {
 
         int testValue = 10;
 
@@ -33,13 +25,7 @@ class TVTest {
     }
 
     @Test
-    void shouldGetCurrentVolumeLevel() {
-
-        assertEquals(0, tv.getCurrentVolumeLevel());
-    }
-
-    @Test
-    void shouldSetCurrentVolumeLevel() {
+    void shouldSetAndGetCurrentVolumeLevel() {
 
         int testValue = 40;
 
@@ -49,13 +35,7 @@ class TVTest {
     }
 
     @Test
-    void shouldGetManufacturer() {
-
-        assertNull(tv.getManufacturer());
-    }
-
-    @Test
-    void shouldSetManufacturer() {
+    void shouldSetAndGetManufacturer() {
 
         String testValue = "Samsung";
 
@@ -65,13 +45,7 @@ class TVTest {
     }
 
     @Test
-    void shouldIsTurnedOnReturnFalse() {
-
-        assertFalse(tv.isTurnedOn());
-    }
-
-    @Test
-    void shouldSetTurnedOnToTrue() {
+    void shouldSetAndGetIsTurnedOn() {
 
         tv.setTurnedOn(true);
 
@@ -211,7 +185,7 @@ class TVTest {
 
     //šim piemērotāks nosaukums būtu: shouldBeEqualsTvs
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsTVs() {
 
         boolean turnedOn = true;
         int currentChannel = 10;
@@ -220,41 +194,31 @@ class TVTest {
 
         //šādu objektu veidošanu droši var iznest atsevišķā metodē
         //un nodot stāvokļus izmantojot parametrus
-        TV firstTV = new TV();
+        TV firstTV = createTv(turnedOn, currentChannel, currentVolumeLevel, manufacturer);
 
-        firstTV.setTurnedOn(turnedOn);
-        firstTV.setCurrentChannel(currentChannel);
-        firstTV.setCurrentVolumeLevel(currentVolumeLevel);
-        firstTV.setManufacturer(manufacturer);
-
-        TV secondTV = new TV();
-
-        secondTV.setTurnedOn(turnedOn);
-        secondTV.setCurrentChannel(currentChannel);
-        secondTV.setCurrentVolumeLevel(currentVolumeLevel);
-        secondTV.setManufacturer(manufacturer);
+        TV secondTV = createTv(turnedOn, currentChannel, currentVolumeLevel, manufacturer);
 
         assertTrue(firstTV.equals(secondTV));
     }
 
+    private TV createTv(boolean turnedOn, int currentChannel, int currentVolumeLevel, String manufacturer) {
+        tv = new TV();
+
+        tv.setTurnedOn(turnedOn);
+        tv.setCurrentChannel(currentChannel);
+        tv.setCurrentVolumeLevel(currentVolumeLevel);
+        tv.setManufacturer(manufacturer);
+        return tv;
+    }
+
     //šim piemērotāks nosaukums būtu: shouldNotBeEqualsTvs
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsTVs() {
         //šādu objektu veidošanu droši var iznest atsevišķā metodē
         //un nodot stāvokļus izmantojot parametrus
-        TV firstTV = new TV();
+        TV firstTV = createTv(true, 10, 30, "Demo 1");
 
-        firstTV.setTurnedOn(true);
-        firstTV.setCurrentChannel(10);
-        firstTV.setCurrentVolumeLevel(30);
-        firstTV.setManufacturer("Demo 1");
-
-        TV secondTV = new TV();
-
-        secondTV.setTurnedOn(false);
-        secondTV.setCurrentChannel(10);
-        secondTV.setCurrentVolumeLevel(30);
-        secondTV.setManufacturer("Demo 2");
+        TV secondTV = createTv(false, 10, 30, "Demo 2");
 
         assertFalse(firstTV.equals(secondTV));
     }

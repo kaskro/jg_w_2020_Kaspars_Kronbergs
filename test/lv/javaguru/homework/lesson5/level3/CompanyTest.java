@@ -16,13 +16,7 @@ class CompanyTest {
     }
 
     @Test
-    void shouldGetName() {
-
-        assertNull(company.getName());
-    }
-
-    @Test
-    void shouldSetName() {
+    void shouldSetAndGetName() {
 
         String name = "Demo";
 
@@ -32,13 +26,7 @@ class CompanyTest {
     }
 
     @Test
-    void shouldGetRegistrationNumber() {
-
-        assertNull(company.getRegistrationNumber());
-    }
-
-    @Test
-    void shouldSetRegistrationNumber() {
+    void shouldSetAndGetRegistrationNumber() {
 
         String registrationNumber = "12345112345";
 
@@ -48,35 +36,34 @@ class CompanyTest {
     }
 
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsCompanies() {
 
         String name = "Demo";
         String registrationNumber = "12345112345";
 
-        Company firstCompany = new Company();
-        firstCompany.setName(name);
-        firstCompany.setRegistrationNumber(registrationNumber);
+        Company firstCompany = createCompany(name, registrationNumber);
 
-        Company secondCompany = new Company();
-        secondCompany.setName(name);
-        secondCompany.setRegistrationNumber(registrationNumber);
+        Company secondCompany = createCompany(name, registrationNumber);
 
         assertTrue(firstCompany.equals(secondCompany));
     }
 
+    private Company createCompany(String name, String registrationNumber) {
+        company = new Company();
+        company.setName(name);
+        company.setRegistrationNumber(registrationNumber);
+        return company;
+    }
+
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsCompanies() {
 
         String name = "Demo";
         String registrationNumber = "12345112345";
 
-        Company firstCompany = new Company();
-        firstCompany.setName(name);
-        firstCompany.setRegistrationNumber(registrationNumber);
+        Company firstCompany = createCompany(name, registrationNumber);
 
-        Company secondCompany = new Company();
-        secondCompany.setName("Not a Demo");
-        secondCompany.setRegistrationNumber("111111111");
+        Company secondCompany = createCompany("Not a Demo", "111111111");
 
         assertFalse(firstCompany.equals(secondCompany));
     }

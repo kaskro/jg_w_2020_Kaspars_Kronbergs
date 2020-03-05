@@ -26,13 +26,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldGetContractNumber() {
-
-        assertNull(employee.getContractNumber());
-    }
-
-    @Test
-    void shouldSetContractNumber() {
+    void shouldSetAndGetContractNumber() {
 
         String contractNumber = "12345";
 
@@ -42,13 +36,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldGetSalary() {
-
-        assertEquals(0, employee.getSalary());
-    }
-
-    @Test
-    void shouldSetSalary() {
+    void shouldSetAndGetSalary() {
 
         double salary = 500;
 
@@ -58,13 +46,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldGetDepartment() {
-
-        assertNull(employee.getDepartment());
-    }
-
-    @Test
-    void shouldSetDepartment() {
+    void shouldSetAndGetDepartment() {
 
         employee.setDepartment(department);
 
@@ -73,36 +55,32 @@ class EmployeeTest {
 
 
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsEmployees() {
 
         String contractNumber = "1234";
         double salary = 500;
 
-        Employee firstEmployee = new Employee();
-        firstEmployee.setContractNumber(contractNumber);
-        firstEmployee.setSalary(salary);
-        firstEmployee.setDepartment(department);
+        Employee firstEmployee = createEmployee(contractNumber, salary);
 
-        Employee secondEmployee = new Employee();
-        secondEmployee.setContractNumber(contractNumber);
-        secondEmployee.setSalary(salary);
-        secondEmployee.setDepartment(department);
+        Employee secondEmployee = createEmployee(contractNumber, salary);
 
         assertTrue(firstEmployee.equals(secondEmployee));
     }
 
+    private Employee createEmployee(String contractNumber, double salary) {
+        employee = new Employee();
+        employee.setContractNumber(contractNumber);
+        employee.setSalary(salary);
+        employee.setDepartment(department);
+        return employee;
+    }
+
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsEmployees() {
 
-        Employee firstEmployee = new Employee();
-        firstEmployee.setContractNumber("12345");
-        firstEmployee.setSalary(600);
-        firstEmployee.setDepartment(department);
+        Employee firstEmployee = createEmployee("12345", 600);
 
-        Employee secondEmployee = new Employee();
-        secondEmployee.setContractNumber("323212");
-        secondEmployee.setSalary(100);
-        secondEmployee.setDepartment(department);
+        Employee secondEmployee = createEmployee("323212", 100);
 
         assertFalse(firstEmployee.equals(secondEmployee));
     }

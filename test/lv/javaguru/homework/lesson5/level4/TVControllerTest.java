@@ -14,7 +14,10 @@ class TVControllerTest {
     @BeforeEach
     void setUp() {
         tvController = new TVController();
+        createTV();
+    }
 
+    private void createTV() {
         tv = new TV();
         tv.setManufacturer("Sony");
         tv.setTurnedOn(true);
@@ -23,13 +26,7 @@ class TVControllerTest {
     }
 
     @Test
-    void shouldGetTV() {
-
-        assertNull(tvController.getTv());
-    }
-
-    @Test
-    void shouldSetTV() {
+    void shouldSetAndGetTV() {
 
         tvController.setTv(tv);
 

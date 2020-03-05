@@ -16,13 +16,7 @@ class LightBulbTest {
     }
 
     @Test
-    void shouldBeFalseWhenIsTurnedOnIsNotSet() {
-
-        assertFalse(lightBulb.isTurnedOn());
-    }
-
-    @Test
-    void shouldSetTurnedOnToTrue() {
+    void shouldSetAndGetTurnedOn() {
 
         lightBulb.setTurnedOn(true);
 
@@ -36,13 +30,7 @@ class LightBulbTest {
     }
 
     @Test
-    void shouldGetCurrentTurnOnCount() {
-
-        assertEquals(0, lightBulb.getCurrentTurnOnCount());
-    }
-
-    @Test
-    void shouldSetCurrentTurnOnCount() {
+    void shouldSetAndGetCurrentTurnOnCount() {
 
         int currentTurnOnCount = 3;
 

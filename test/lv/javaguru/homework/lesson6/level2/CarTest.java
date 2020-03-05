@@ -15,13 +15,7 @@ class CarTest {
     }
 
     @Test
-    void shouldGetModel() {
-
-        assertNull(car.getModel());
-    }
-
-    @Test
-    void shouldSetModel() {
+    void shouldSetAndGetModel() {
 
         String model = "Audi";
 
@@ -31,13 +25,7 @@ class CarTest {
     }
 
     @Test
-    void shouldGetColor() {
-
-        assertNull(car.getColor());
-    }
-
-    @Test
-    void shouldSetColor() {
+    void shouldSetAndGetColor() {
 
         String color = "Red";
 
@@ -47,13 +35,7 @@ class CarTest {
     }
 
     @Test
-    void shouldGetMaxSpeed() {
-
-        assertEquals(0, car.getMaxSpeed());
-    }
-
-    @Test
-    void shouldSetMaxSpeed() {
+    void shouldSetAndGetMaxSpeed() {
 
         int maxSpeed = 100;
 
@@ -63,13 +45,7 @@ class CarTest {
     }
 
     @Test
-    void shouldGetCurrentSpeed() {
-
-        assertEquals(0, car.getCurrentSpeed());
-    }
-
-    @Test
-    void shouldSetCurrentSpeed() {
+    void shouldSetAndGetCurrentSpeed() {
 
         int currentSpeed = 10;
 
@@ -172,47 +148,40 @@ class CarTest {
     }
 
     @Test
-    void shouldReturnTrueWhenTwoObjectsAreEqual() {
+    void shouldBeEqualsCards() {
 
         String model = "Audi";
         String color = "Gray";
         int maxSpeed = 300;
         int currentSpeed = 0;
 
-        Car firstCar = new Car();
-        firstCar.setModel(model);
-        firstCar.setColor(color);
-        firstCar.setMaxSpeed(maxSpeed);
-        firstCar.setCurrentSpeed(currentSpeed);
+        Car firstCar = createCar(model, color, maxSpeed, currentSpeed);
 
-        Car secondCar = new Car();
-        secondCar.setModel(model);
-        secondCar.setColor(color);
-        secondCar.setMaxSpeed(maxSpeed);
-        secondCar.setCurrentSpeed(currentSpeed);
+        Car secondCar = createCar(model, color, maxSpeed, currentSpeed);
 
         assertTrue(firstCar.equals(secondCar));
     }
 
+    private Car createCar(String model, String color, int maxSpeed, int currentSpeed) {
+        car = new Car();
+        car.setModel(model);
+        car.setColor(color);
+        car.setMaxSpeed(maxSpeed);
+        car.setCurrentSpeed(currentSpeed);
+        return car;
+    }
+
     @Test
-    void shouldReturnFalseWhenTwoObjectsAreNotEqual() {
+    void shouldNotBeEqualsCars() {
 
         String model = "Audi";
         String color = "Gray";
         int maxSpeed = 300;
         int currentSpeed = 0;
 
-        Car firstCar = new Car();
-        firstCar.setModel(model);
-        firstCar.setColor(color);
-        firstCar.setMaxSpeed(maxSpeed);
-        firstCar.setCurrentSpeed(currentSpeed);
+        Car firstCar = createCar(model, color, maxSpeed, currentSpeed);
 
-        Car secondCar = new Car();
-        secondCar.setModel("BMW");
-        secondCar.setColor("Black");
-        secondCar.setMaxSpeed(maxSpeed);
-        secondCar.setCurrentSpeed(currentSpeed);
+        Car secondCar = createCar("BMW", "Black", maxSpeed, currentSpeed);
 
         assertFalse(firstCar.equals(secondCar));
     }
