@@ -4,17 +4,12 @@ import java.util.Random;
 
 public class ArrayService {
 
-    private int[] array;
-
-    public int[] getArray() {
+    public static int[] create(int size) {
+        int[] array = new int[size];
         return array;
     }
 
-    public void create(int size) {
-        array = new int[size];
-    }
-
-    public void fillArrayWithRandomNumbers() {
+    public static void fillArrayWithRandomNumbers(int[] array) {
         Random random = new Random();
         int randomNumber;
         for (int i = 0; i < array.length; i++) {
@@ -23,18 +18,44 @@ public class ArrayService {
         }
     }
 
-    public void printArrayToConsole() {
+    public static void printArrayToConsole(int[] array) {
         for (int number : array) {
             System.out.print(number + " ");
         }
     }
 
-    public int sumInArray() {
+    public static int sumInArray(int[] array) {
         int sum = 0;
         for (int number : array) {
             sum += number;
         }
         return sum;
+    }
+
+    public static void sortArray(int[] array) {
+        if (array.length > 0) {
+            int temp;
+            for (int number : array) {
+                for (int i = 0; i < array.length - 1; i++) {
+                    if (array[i] > array[i + 1]) {
+                        temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void swap(int[] array) {
+        if (array.length > 0) {
+            int temp;
+            for (int i = 0; i < (array.length / 2); i++) {
+                temp = array[i];
+                array[i] = array[array.length - 1 - i];
+                array[array.length - 1 - i] = temp;
+            }
+        }
     }
 
 }

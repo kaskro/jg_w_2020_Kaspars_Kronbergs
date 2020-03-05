@@ -1,73 +1,98 @@
 package lv.javaguru.homework.lesson7.level1;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayServiceTest {
 
-    private ArrayService arrayService;
-
-    @BeforeEach
-    void setUp() {
-        arrayService = new ArrayService();
-    }
+    private final int SIZE = 10;
 
     @Test
     void shouldCreateArrayWithGivenSize() {
-        final int SIZE = 10;
-        arrayService.create(SIZE);
+        int[] array;
+        array = ArrayService.create(SIZE);
 
-        assertEquals(SIZE, arrayService.getArray().length);
+        assertEquals(SIZE, array.length);
     }
 
     @Test
     void shouldFillArrayWithRandomNumbers() {
-        final int SIZE = 10;
         int[] firstArray;
         int[] secondArray;
 
-        arrayService.create(SIZE);
-        arrayService.fillArrayWithRandomNumbers();
-        firstArray = populateArray(SIZE, arrayService.getArray());
-        arrayService.fillArrayWithRandomNumbers();
-        secondArray = populateArray(SIZE, arrayService.getArray());
+        firstArray = ArrayService.create(SIZE);
+        ArrayService.fillArrayWithRandomNumbers(firstArray);
+
+        secondArray = ArrayService.create(SIZE);
+        ArrayService.fillArrayWithRandomNumbers(secondArray);
 
         assertNotEquals(Arrays.toString(firstArray), Arrays.toString(secondArray));
     }
 
-    private int[] populateArray(int size, int[] array) {
-        int[] newArray = new int[size];
-        int i = 0;
-        for (int element : array) {
-            newArray[i] = element;
-            i++;
-        }
-        return newArray;
+    @Test
+    void sumInArray() {
+        int[] firstArray;
+        int testSum;
+        firstArray = ArrayService.create(SIZE);
+        ArrayService.fillArrayWithRandomNumbers(firstArray);
+        testSum = calculateSum(firstArray);
+
+        assertEquals(testSum, ArrayService.sumInArray(firstArray));
     }
 
     @Test
-    void sumInArray() {
-        final int SIZE = 10;
+    void shouldSortArray() {
         int[] firstArray;
-        int testSum;
-        arrayService.create(SIZE);
-        arrayService.fillArrayWithRandomNumbers();
-        firstArray = populateArray(SIZE, arrayService.getArray());
-        testSum = calculateSum(firstArray);
+        firstArray = ArrayService.create(SIZE);
+        ArrayService.fillArrayWithRandomNumbers(firstArray);
+        ArrayService.sortArray(firstArray);
 
-        assertEquals(testSum, arrayService.sumInArray());
+        assertTrue(isSortedAsc(firstArray));
     }
 
-    private int calculateSum(int[] firstArray) {
+    @Test
+    void shouldSwapArray() {
+        int[] firstArray;
+        int[] firstArrayCopy;
+        firstArray = ArrayService.create(SIZE);
+        ArrayService.fillArrayWithRandomNumbers(firstArray);
+        firstArrayCopy = Arrays.copyOf(firstArray, SIZE);
+        ArrayService.swap(firstArray);
+
+        assertTrue(isSwapped(firstArrayCopy, firstArray));
+    }
+
+    private int calculateSum(int[] array) {
         int sum = 0;
-        for (int number : firstArray) {
+        for (int number : array) {
             sum += number;
         }
         return sum;
     }
+
+    private boolean isSortedAsc(int[] array) {
+        if (array.length > 0) {
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isSwapped(int[] firstArray, int[] secondArray) {
+        if (firstArray.length == secondArray.length && firstArray.length > 0 && secondArray.length > 0) {
+            for (int i = 0; i < firstArray.length; i++) {
+                if (firstArray[i] != secondArray[secondArray.length - 1 - i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
