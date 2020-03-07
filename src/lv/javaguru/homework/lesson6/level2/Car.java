@@ -66,14 +66,21 @@ public class Car {
     }
 
     private void increaseSpeed() {
+        //var vienkāršāk
+//        if (canAccelerate()) {
+//            currentSpeed++;
+//        }
         currentSpeed += canAccelerate() ? 1 : 0;
+
     }
 
     public void slowDown() {
         decreaseSpeed();
     }
 
+    //šī papildus metode nav nepieciešama, šo loģiku varēji rakstīt slowDown metodē
     private void decreaseSpeed() {
+        //tas pats, kas ar increaseSpeed
         currentSpeed -= isDriving() ? 1 : 0;
     }
 

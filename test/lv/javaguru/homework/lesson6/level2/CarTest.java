@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//OK
 class CarTest {
 
     private Car car;
@@ -17,7 +18,7 @@ class CarTest {
     @Test
     void shouldSetAndGetModel() {
 
-        String model = "Audi";
+        String model = "Audi"; //nav nepieciešams iznest atsevišķā mainīgajā
 
         car.setModel(model);
 

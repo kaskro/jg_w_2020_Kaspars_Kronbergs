@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson6.level1;
 
+//OK!!
 public class NumberService {
     public int sumInRange(int from, int to) {
         int sum = 0;

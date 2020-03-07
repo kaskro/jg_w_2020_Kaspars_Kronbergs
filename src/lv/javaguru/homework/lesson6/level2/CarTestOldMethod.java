@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson6.level2;
 
+//Ok
 public class CarTestOldMethod {
 
     Car car = new Car();

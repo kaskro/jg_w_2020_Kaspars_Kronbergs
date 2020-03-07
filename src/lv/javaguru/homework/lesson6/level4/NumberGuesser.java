@@ -2,6 +2,9 @@ package lv.javaguru.homework.lesson6.level4;
 
 import java.util.Scanner;
 
+//Pardon, par nepareizi pārtulkotu uzdevumu
+//lietotajam bija tikai jāiedomājas vienu skaitli
+//un tad programma vai nu Randomā min vai izmanto kādu algoritmu
 public class NumberGuesser {
 
     public static void main(String[] args) {

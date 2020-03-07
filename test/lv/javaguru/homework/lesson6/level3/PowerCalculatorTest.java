@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//trūkst tests ar negatīvu vērtību un 0
 class PowerCalculatorTest {
 
     @Test
@@ -17,4 +18,5 @@ class PowerCalculatorTest {
 
         assertEquals(expectedResult, powerCalculator.pow(number, power));
     }
+
 }

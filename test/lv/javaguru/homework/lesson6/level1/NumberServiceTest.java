@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Ok
+//vēl varēji patestēt kā tas darbojas ar negatīviem skaitļiem
 class NumberServiceTest {
 
     private NumberService numberService;
@@ -17,6 +19,8 @@ class NumberServiceTest {
     @Test
     void shouldReturnSumInRange() {
 
+        //šos mainīoos vari neiznest
+        //nodarbībās to es daru, lai visiem būtu uzskatamāk un saprotamāk
         int from = 10;
         int to = 15;
         int expectedResult = 75;
