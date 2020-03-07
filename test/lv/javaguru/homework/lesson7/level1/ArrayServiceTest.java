@@ -12,8 +12,8 @@ class ArrayServiceTest {
 
     @Test
     void shouldCreateArrayWithGivenSize() {
-        int[] array;
-        array = ArrayService.create(SIZE);
+        int[] array;                        //Šīs abas raksti vienā rindā
+        array = ArrayService.create(SIZE);  //nav nepieciešams sadalīt, tas uz visām vietam attiecās
 
         assertEquals(SIZE, array.length);
     }
@@ -65,6 +65,9 @@ class ArrayServiceTest {
         assertTrue(isSwapped(firstArrayCopy, firstArray));
     }
 
+    //parasti testos mēs sarežģītu loģiku nerakstam,
+    //taču ņemot vērā, ka Jums šobrīd ir jāiztiek ar tām zināšanām, kuras Jums šobrīd ir
+    //tad to var pieļaut
     private int calculateSum(int[] array) {
         int sum = 0;
         for (int number : array) {

@@ -15,6 +15,7 @@ public class Palindrome {
     }
 
     private static boolean isSameCharacter(String[] characters, int i) {
+        //characters[characters.length - 1 - i] -> iznes mainīgajā simetricElement
         return characters[i].equals(characters[characters.length - 1 - i]);
     }
 }
