@@ -12,21 +12,18 @@ class ArrayServiceTest {
 
     @Test
     void shouldCreateArrayWithGivenSize() {
-        int[] array;                        //Šīs abas raksti vienā rindā
-        array = ArrayService.create(SIZE);  //nav nepieciešams sadalīt, tas uz visām vietam attiecās
+        int[] array = ArrayService.create(SIZE);
 
         assertEquals(SIZE, array.length);
     }
 
     @Test
     void shouldFillArrayWithRandomNumbers() {
-        int[] firstArray;
-        int[] secondArray;
+        int[] firstArray = ArrayService.create(SIZE);
+        int[] secondArray = ArrayService.create(SIZE);
 
-        firstArray = ArrayService.create(SIZE);
+
         ArrayService.fillArrayWithRandomNumbers(firstArray);
-
-        secondArray = ArrayService.create(SIZE);
         ArrayService.fillArrayWithRandomNumbers(secondArray);
 
         assertNotEquals(Arrays.toString(firstArray), Arrays.toString(secondArray));
@@ -34,9 +31,9 @@ class ArrayServiceTest {
 
     @Test
     void sumInArray() {
-        int[] firstArray;
+        int[] firstArray = ArrayService.create(SIZE);
         int testSum;
-        firstArray = ArrayService.create(SIZE);
+
         ArrayService.fillArrayWithRandomNumbers(firstArray);
         testSum = calculateSum(firstArray);
 
@@ -45,8 +42,8 @@ class ArrayServiceTest {
 
     @Test
     void shouldSortArray() {
-        int[] firstArray;
-        firstArray = ArrayService.create(SIZE);
+        int[] firstArray = ArrayService.create(SIZE);
+
         ArrayService.fillArrayWithRandomNumbers(firstArray);
         ArrayService.sortArray(firstArray);
 
@@ -55,11 +52,11 @@ class ArrayServiceTest {
 
     @Test
     void shouldSwapArray() {
-        int[] firstArray;
-        int[] firstArrayCopy;
-        firstArray = ArrayService.create(SIZE);
+        int[] firstArray = ArrayService.create(SIZE);
+
         ArrayService.fillArrayWithRandomNumbers(firstArray);
-        firstArrayCopy = Arrays.copyOf(firstArray, SIZE);
+
+        int[] firstArrayCopy = Arrays.copyOf(firstArray, SIZE);
         ArrayService.swap(firstArray);
 
         assertTrue(isSwapped(firstArrayCopy, firstArray));

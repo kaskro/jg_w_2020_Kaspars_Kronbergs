@@ -7,6 +7,6 @@ public class PowerCalculator {
         for (int i = 0; i < power; i++) {
             result *= number;
         }
-        return result;
+        return number < 0 ? result * -1 : result;
     }
 }

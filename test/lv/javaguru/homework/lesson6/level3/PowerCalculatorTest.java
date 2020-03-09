@@ -19,4 +19,29 @@ class PowerCalculatorTest {
         assertEquals(expectedResult, powerCalculator.pow(number, power));
     }
 
+    @Test
+    void shouldCalculatePowFromNegativeNumber() {
+
+        int number = -2;
+        int power = 4;
+        int expectedResult = -16;
+
+        PowerCalculator powerCalculator = new PowerCalculator();
+
+        assertEquals(expectedResult, powerCalculator.pow(number, power));
+    }
+
+    @Test
+    void shouldCalculatePowFromZero() {
+
+        int number = 0;
+        int power = 4;
+        int expectedResult = 0;
+
+        PowerCalculator powerCalculator = new PowerCalculator();
+
+        assertEquals(expectedResult, powerCalculator.pow(number, power));
+    }
+
+
 }

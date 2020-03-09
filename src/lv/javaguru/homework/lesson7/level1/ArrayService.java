@@ -5,8 +5,7 @@ import java.util.Random;
 public class ArrayService {
 
     public static int[] create(int size) {
-        int[] array = new int[size]; //šeit ureiz vari atdot masīvu jauno, neveidojot papildus mainīgo
-        return array;
+        return new int[size];
     }
 
     public static void fillArrayWithRandomNumbers(int[] array) {
@@ -33,33 +32,25 @@ public class ArrayService {
     }
 
     public static void sortArray(int[] array) {
-        //if nav vajadzīgs, jo cikla nosacījums neizpildās
-        //aizkomentējot šo rindu visi testi ir zaļi ;)
-//        if (array.length > 0) {
-            int temp;
-            for (int number : array) {
-                for (int i = 0; i < array.length - 1; i++) {
-                    if (array[i] > array[i + 1]) {
-                        temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                    }
+        int temp;
+        for (int number : array) {
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
                 }
             }
-//        }
+        }
     }
 
     public static void swap(int[] array) {
-        //if nav vajadzīgs, jo cikla nosacījums neizpildās
-        //aizkomentējot šo rindu visi testi ir zaļi ;)
-//        if (array.length > 0) {
-            int temp;
-            for (int i = 0; i < (array.length / 2); i++) {
-                temp = array[i];
-                array[i] = array[array.length - 1 - i];
-                array[array.length - 1 - i] = temp;
-            }
-//        }
+        int temp;
+        for (int i = 0; i < (array.length / 2); i++) {
+            temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
     }
 
 }

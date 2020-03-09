@@ -18,43 +18,34 @@ class NumberServiceTest {
 
     @Test
     void shouldReturnSumInRange() {
-
         //šos mainīoos vari neiznest
         //nodarbībās to es daru, lai visiem būtu uzskatamāk un saprotamāk
-        int from = 10;
-        int to = 15;
-        int expectedResult = 75;
-
-        assertEquals(expectedResult, numberService.sumInRange(from, to));
+        assertEquals(75, numberService.sumInRange(10, 15));
     }
 
     @Test
     void shouldReturnSumInReverseRange() {
-
-        int from = 15;
-        int to = 10;
-        int expectedResult = 75;
-
-        assertEquals(expectedResult, numberService.sumInRange(from, to));
+        assertEquals(75, numberService.sumInRange(15, 10));
     }
 
     @Test
+    void shouldReturnSumInNegativeRange() {
+        assertEquals(-75, numberService.sumInRange(-10,-15));
+    }
+
+    @Test
+    void shouldGetEvenNumberCountInNegativeRange() {
+        assertEquals(5, numberService.getEvenNumberCount(-9, -19));
+    }
+
+
+    @Test
     void shouldGetEvenNumberCountInRange() {
-
-        int from = 9;
-        int to = 19;
-        int expectedResult = 5;
-
-        assertEquals(expectedResult, numberService.getEvenNumberCount(from, to));
+        assertEquals(5, numberService.getEvenNumberCount(9, 19));
     }
 
     @Test
     void shouldGetEvenNumberCountInReversedRange() {
-
-        int from = 19;
-        int to = 9;
-        int expectedResult = 5;
-
-        assertEquals(expectedResult, numberService.getEvenNumberCount(from, to));
+        assertEquals(5, numberService.getEvenNumberCount(19, 9));
     }
 }
