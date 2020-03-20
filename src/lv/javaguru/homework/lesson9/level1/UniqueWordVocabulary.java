@@ -1,6 +1,7 @@
 package lv.javaguru.homework.lesson9.level1;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class UniqueWordVocabulary {
@@ -23,4 +24,23 @@ public class UniqueWordVocabulary {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UniqueWordVocabulary)) return false;
+        UniqueWordVocabulary that = (UniqueWordVocabulary) o;
+        return Objects.equals(wordVocabulary, that.wordVocabulary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(wordVocabulary);
+    }
+
+    @Override
+    public String toString() {
+        return "UniqueWordVocabulary{" +
+                "wordVocabulary=" + wordVocabulary +
+                '}';
+    }
 }
