@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson8.level1;
 
+//Ok
 public class Car extends Vehicle {
 
     protected boolean isChildLockOn;

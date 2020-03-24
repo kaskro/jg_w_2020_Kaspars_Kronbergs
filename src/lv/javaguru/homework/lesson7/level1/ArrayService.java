@@ -2,6 +2,7 @@ package lv.javaguru.homework.lesson7.level1;
 
 import java.util.Random;
 
+//Ok
 public class ArrayService {
 
     public static int[] create(int size) {

@@ -2,6 +2,7 @@ package lv.javaguru.homework.lesson8.level1;
 
 import java.util.Objects;
 
+//Ok
 public class Vehicle {
 
     protected String brand;

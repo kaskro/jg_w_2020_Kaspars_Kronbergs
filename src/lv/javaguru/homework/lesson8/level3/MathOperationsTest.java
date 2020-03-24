@@ -1,5 +1,6 @@
 package lv.javaguru.homework.lesson8.level3;
 
+//Ok
 public class MathOperationsTest {
     public static void main(String[] args) {
         MathOperation[] operationList = new MathOperation[4];

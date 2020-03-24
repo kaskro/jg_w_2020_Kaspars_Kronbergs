@@ -2,6 +2,8 @@ package lv.javaguru.homework.lesson8.level2;
 
 import java.util.Random;
 
+//Šeit esi pārcenties
+//Te varēji vienkāŗši izveidot no katra tipa pa vienai fugūrai un ar to pietiktu
 public class RandomShapes {
     public static void main(String[] args) {
 

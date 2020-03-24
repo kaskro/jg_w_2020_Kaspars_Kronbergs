@@ -16,6 +16,6 @@ public class Circle extends AbstractShape {
 
     @Override
     public double getArea() {
-        return radius * radius * 3.14;
+        return radius * radius * 3.14;  //izmanto Math vai arī iznes 3.14 kostantē
     }
 }

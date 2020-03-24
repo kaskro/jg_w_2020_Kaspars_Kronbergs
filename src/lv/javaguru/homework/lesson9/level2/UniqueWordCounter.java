@@ -17,6 +17,7 @@ public class UniqueWordCounter {
     public String mostCommonWord() {
         String commonWord = "";
         int topCount = 0;
+        //izmantojam JDK 8
         for (var element : wordCounter.entrySet()) {
             if (element.getValue() > topCount) {
                 topCount = element.getValue();

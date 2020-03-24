@@ -29,6 +29,8 @@ class ArrayServiceTest {
         assertNotEquals(Arrays.toString(firstArray), Arrays.toString(secondArray));
     }
 
+    //šis nenotestē šo metodi, bet tas ir ok, jo jūs vēl nemakat mokotu objektus
+    //tā kā ok
     @Test
     void sumInArray() {
         int[] firstArray = ArrayService.create(SIZE);
