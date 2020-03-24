@@ -39,6 +39,7 @@ class LibraryTest {
         Book testBook = createBook("Tests", "Demo");
         library.addBook(testBook);
         assertNotEquals(testBook, library.getBookByTitle("Test"));
+
     }
 
     @Test

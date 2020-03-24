@@ -29,6 +29,7 @@ public class Shop {
         products.removeIf(product -> product.getName().equals(name));
     }
 
+    //arī šeit labak izmantot Optional līdzīgi kā iepriekšējā uzdevumā
     public Product getProductByName(String name) {
         for (Product product : products) {
             if (product.getName().equals(name)) {
@@ -38,6 +39,7 @@ public class Shop {
         return new Product("", new BigDecimal("0.00"));
     }
 
+    //metodes nosaukums mulsina, labāk findProducts un atgriežamais tips List<Product>
     public Shop findProduct(BigDecimal minPrice, BigDecimal maxPrice) {
         Shop resultList = new Shop();
         for (Product product : products) {

@@ -3,6 +3,7 @@ package lv.javaguru.homework.lesson9.level3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Library {
 
@@ -16,12 +17,17 @@ public class Library {
         books.remove(book);
     }
 
+    //pastāstīšu par šo konceptu pirms nodarbības, atgadini lūdzu
+    //šeit labāk atgriezt Optinoal<Book>
     public Book getBookByTitle(String title) {
+//        Book foundedBook = null;  nodefinē šeit mainīgo
         for (Book book : books) {
             if (book.getTitle().equals(title)) {
-                return book;
+                return book;//šeit ielik to ja atrod founedBook = book;
             }
         }
+         //attiecīgi šeit Optional.of
+//        return Optional.of(foundedBook);
         return new Book("", "");
     }
 

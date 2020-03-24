@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+//Ok
 public class UniqueWordVocabulary {
 
     private Set<String> wordVocabulary = new HashSet<>();
