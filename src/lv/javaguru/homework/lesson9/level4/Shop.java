@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Shop {
 
@@ -29,25 +30,27 @@ public class Shop {
         products.removeIf(product -> product.getName().equals(name));
     }
 
-    //arī šeit labak izmantot Optional līdzīgi kā iepriekšējā uzdevumā
-    public Product getProductByName(String name) {
+    public Optional<Product> getProductByName(String name) {
         for (Product product : products) {
             if (product.getName().equals(name)) {
-                return product;
+                return Optional.of(product);
             }
         }
-        return new Product("", new BigDecimal("0.00"));
+        return Optional.empty();
     }
 
-    //metodes nosaukums mulsina, labāk findProducts un atgriežamais tips List<Product>
-    public Shop findProduct(BigDecimal minPrice, BigDecimal maxPrice) {
-        Shop resultList = new Shop();
+    public List<Product> findProducts(BigDecimal minPrice, BigDecimal maxPrice) {
+        List<Product> resultList = new ArrayList<>();
         for (Product product : products) {
-            if (product.getPrice().compareTo(minPrice) == 1 && product.getPrice().compareTo(maxPrice) == -1) {
+            if (isInRange(minPrice, maxPrice, product)) {
                 resultList.add(product);
             }
         }
         return resultList;
+    }
+
+    private boolean isInRange(BigDecimal minPrice, BigDecimal maxPrice, Product product) {
+        return product.getPrice().compareTo(minPrice) > 0 && product.getPrice().compareTo(maxPrice) < 0;
     }
 
     public List<Product> getProducts() {

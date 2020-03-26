@@ -3,7 +3,10 @@ package lv.javaguru.homework.lesson9.level3;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class LibraryTest {
 
@@ -31,15 +34,14 @@ class LibraryTest {
     void shouldGetBookByTitle() {
         Book testBook = createBook("Tests", "Demo");
         library.addBook(testBook);
-        assertEquals(testBook, library.getBookByTitle("Demo"));
+        assertEquals(Optional.of(testBook), library.getBookByTitle("Demo"));
     }
 
     @Test
     void shouldNotGetBookByTitle() {
         Book testBook = createBook("Tests", "Demo");
         library.addBook(testBook);
-        assertNotEquals(testBook, library.getBookByTitle("Test"));
-
+        assertNotEquals(Optional.of(testBook), library.getBookByTitle("Test"));
     }
 
     @Test
@@ -61,7 +63,7 @@ class LibraryTest {
         correctLibrary.addBook(firstBook);
         correctLibrary.addBook(thirdBook);
         correctLibrary.addBook(fourthBook);
-        assertTrue(correctLibrary.equals(library.getBooksByAuthor("Test")));
+        assertEquals(correctLibrary, library.getBooksByAuthor("Test"));
     }
 
     private Book createBook(String author, String title) {

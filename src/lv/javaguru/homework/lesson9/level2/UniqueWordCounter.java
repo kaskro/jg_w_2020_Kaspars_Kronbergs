@@ -15,25 +15,13 @@ public class UniqueWordCounter {
     }
 
     public String mostCommonWord() {
-        //drošvien gribēji šādi
-//        Map.Entry<String, Integer> mostCommon = null;
-//        for (Map.Entry<String, Integer> element : wordCounter.entrySet()) {
-//            if (mostCommon != null && mostCommon.getValue() < element.getValue()) {
-//                mostCommon = element;
-//            }
-//        }
-//        return mostCommon.getKey();
-
-        String commonWord = "";
-        int topCount = 0;
-        //izmantojam JDK 8
-        for (var element : wordCounter.entrySet()) {
-            if (element.getValue() > topCount) {
-                topCount = element.getValue();
-                commonWord = element.getKey();
+        Map.Entry<String, Integer> mostCommon = null;
+        for (Map.Entry<String, Integer> element : wordCounter.entrySet()) {
+            if (mostCommon == null || mostCommon.getValue() < element.getValue()) {
+                mostCommon = element;
             }
         }
-        return commonWord;
+        return mostCommon != null ? mostCommon.getKey() : "";
     }
 
     public void printToConsole() {

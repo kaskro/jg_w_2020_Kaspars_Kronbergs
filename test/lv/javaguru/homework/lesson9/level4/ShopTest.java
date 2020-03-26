@@ -4,8 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 //OK
 class ShopTest {
@@ -18,13 +21,13 @@ class ShopTest {
     }
 
     @Test
-    void add() {
+    void shouldAddProduct() {
         shop.add(makeProduct("Test", "10.00"));
         assertEquals(1, shop.size());
     }
 
     @Test
-    void addAll() {
+    void shouldAddAllProducts() {
         addThreeProducts();
 
         Shop secondShop = new Shop();
@@ -35,7 +38,7 @@ class ShopTest {
     }
 
     @Test
-    void removeProductByName() {
+    void shouldRemoveProductByName() {
         addThreeProducts();
         shop.add(makeProduct("Test2", "14.00"));
 
@@ -44,23 +47,25 @@ class ShopTest {
     }
 
     @Test
-    void getProductByName() {
-        shop.add(makeProduct("Test2", "11.00"));
-        assertEquals("Test2", shop.getProductByName("Test2").getName());
+    void shouldGetProductByName() {
+        Product test = makeProduct("Test2", "11.00");
+        shop.add(test);
+        assertEquals(Optional.of(test), shop.getProductByName("Test2"));
     }
 
     @Test
-    void getNotProductByWrongName() {
-        shop.add(makeProduct("Test2", "11.00"));
-        assertEquals("", shop.getProductByName("Test").getName());
+    void shouldNotGetProductByWrongName() {
+        Product test = makeProduct("Test2", "11.00");
+        shop.add(test);
+        assertNotEquals(Optional.of(test), shop.getProductByName("Test"));
     }
 
     @Test
-    void findProduct() {
+    void shouldFindProductsInRange() {
         addThreeProducts();
-        Shop resultList = new Shop();
+        List<Product> resultList = new ArrayList<>();
         resultList.add(makeProduct("Test2", "11.00"));
-        assertEquals(resultList, shop.findProduct(new BigDecimal("10.00"), new BigDecimal("12.00")));
+        assertEquals(resultList, shop.findProducts(new BigDecimal("10.00"), new BigDecimal("12.00")));
     }
 
     private Product makeProduct(String name, String value) {

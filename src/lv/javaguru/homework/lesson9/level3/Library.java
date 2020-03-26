@@ -17,18 +17,13 @@ public class Library {
         books.remove(book);
     }
 
-    //pastāstīšu par šo konceptu pirms nodarbības, atgadini lūdzu
-    //šeit labāk atgriezt Optinoal<Book>
-    public Book getBookByTitle(String title) {
-//        Book foundedBook = null;  nodefinē šeit mainīgo
+    public Optional<Book> getBookByTitle(String title) {
         for (Book book : books) {
             if (book.getTitle().equals(title)) {
-                return book;//šeit ielik to ja atrod founedBook = book;
+                return Optional.of(book);
             }
         }
-         //attiecīgi šeit Optional.of
-//        return Optional.of(foundedBook);
-        return new Book("", "");
+        return Optional.empty();
     }
 
     public Library getBooksByAuthor(String author) {
