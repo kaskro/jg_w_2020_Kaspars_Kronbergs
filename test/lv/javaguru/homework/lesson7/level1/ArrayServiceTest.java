@@ -29,17 +29,12 @@ class ArrayServiceTest {
         assertNotEquals(Arrays.toString(firstArray), Arrays.toString(secondArray));
     }
 
-    //šis nenotestē šo metodi, bet tas ir ok, jo jūs vēl nemakat mokotu objektus
-    //tā kā ok
     @Test
     void sumInArray() {
-        int[] firstArray = ArrayService.create(SIZE);
-        int testSum;
+        int[] testArray = {1,2,3,4,5};
+        int testSum = 15;
 
-        ArrayService.fillArrayWithRandomNumbers(firstArray);
-        testSum = calculateSum(firstArray);
-
-        assertEquals(testSum, ArrayService.sumInArray(firstArray));
+        assertEquals(testSum, ArrayService.sumInArray(testArray));
     }
 
     @Test
@@ -62,17 +57,6 @@ class ArrayServiceTest {
         ArrayService.swap(firstArray);
 
         assertTrue(isSwapped(firstArrayCopy, firstArray));
-    }
-
-    //parasti testos mēs sarežģītu loģiku nerakstam,
-    //taču ņemot vērā, ka Jums šobrīd ir jāiztiek ar tām zināšanām, kuras Jums šobrīd ir
-    //tad to var pieļaut
-    private int calculateSum(int[] array) {
-        int sum = 0;
-        for (int number : array) {
-            sum += number;
-        }
-        return sum;
     }
 
     private boolean isSortedAsc(int[] array) {
