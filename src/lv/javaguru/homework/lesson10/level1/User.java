@@ -2,6 +2,7 @@ package lv.javaguru.homework.lesson10.level1;
 
 import java.util.Objects;
 
+//ok
 public class User {
 
     private String name;
