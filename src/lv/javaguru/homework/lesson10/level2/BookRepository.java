@@ -1,6 +1,9 @@
 package lv.javaguru.homework.lesson10.level2;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class BookRepository implements Repository<Book> {
 
@@ -13,13 +16,7 @@ public class BookRepository implements Repository<Book> {
 
     @Override
     public List<Book> findAll() {
-        //šādi būs vienkaršāk
         return List.copyOf(repository.values());
-//        List<Book> resultList = new ArrayList<>();
-//        for (Map.Entry<String, Book> item : repository.entrySet()) {
-//            resultList.add(item.getValue());
-//        }
-//        return resultList;
     }
 
     @Override
@@ -44,10 +41,13 @@ public class BookRepository implements Repository<Book> {
         //šeit nav būtiski, ka elemnts neeksistē repository,
         //jo to tā vai tā bija jādzēš
         //Tādēļ, ja elemnta nav saraksta no kur vēlamies dzēst, uzskatam ka operācija veikta sekmīgi
-        if (!repository.containsKey(id)) {
+//        if (!repository.containsKey(id)) {
+//            throw new ItemNotFoundException("Item with id = \"" + id + "\" not found.");
+//        } else {
+//            System.out.println(repository.remove(id));
+//        }
+        if (repository.remove(id) == null) {
             throw new ItemNotFoundException("Item with id = \"" + id + "\" not found.");
-        } else {
-            repository.remove(id);
         }
     }
 
