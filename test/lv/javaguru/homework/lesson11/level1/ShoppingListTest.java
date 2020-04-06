@@ -3,12 +3,12 @@ package lv.javaguru.homework.lesson11.level1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ShoppingListTest {
 
@@ -92,5 +92,45 @@ class ShoppingListTest {
         mockList.add(laptop);
 
         shoppingList.printToConsole();
+    }
+
+    @Test
+    void shouldSaveShoppingListToFile() {
+        Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
+        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
+        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
+        Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
+        Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
+
+        mockList.add(orange);
+        mockList.add(banana);
+        mockList.add(milk);
+        mockList.add(radio);
+        mockList.add(laptop);
+
+        File testFile = new File("shoppingList");
+        shoppingList.saveListInFile(testFile);
+        assertTrue(testFile.exists());
+        assertTrue(testFile.length() > 0);
+    }
+
+    @Test
+    void shouldLoadShoppingListFromAFile() {
+        Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
+        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
+        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
+        Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
+        Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
+
+        mockList.add(orange);
+        mockList.add(banana);
+        mockList.add(milk);
+        mockList.add(radio);
+        mockList.add(laptop);
+
+        File testFile = new File("shoppingList");
+        ShoppingList resultList = new ShoppingList(new ArrayList<>());
+        resultList.loadListFromFile(testFile);
+        assertEquals(shoppingList.getShoppingList(), resultList.getShoppingList());
     }
 }
