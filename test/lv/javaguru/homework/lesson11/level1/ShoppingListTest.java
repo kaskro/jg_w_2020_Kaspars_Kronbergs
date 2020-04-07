@@ -40,6 +40,7 @@ class ShoppingListTest {
 
     @Test
     void shouldGetProductsInGivenPriceRange() {
+        //produktu saraksta izveidošanu droši var iznes atsevišķā metodē un izmantot to vairakas reizes
         Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
         Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
         Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
@@ -51,6 +52,8 @@ class ShoppingListTest {
         mockList.add(milk);
         mockList.add(radio);
         mockList.add(laptop);
+
+        shoppingList.printToConsole();
 
         assertEquals(1, shoppingList.getProductsInPriceRange(new BigDecimal("2.29"), new BigDecimal("2.32")).size());
         assertEquals(orange, shoppingList.getProductsInPriceRange(new BigDecimal("2.29"), new BigDecimal("2.32")).get(0));
@@ -128,6 +131,8 @@ class ShoppingListTest {
         mockList.add(radio);
         mockList.add(laptop);
 
+        //parasti šādus testa resursus var turēt testa mapes resoursu mapē
+        //lai tests darbotos uz jebkuras mašīnas
         File testFile = new File("shoppingList");
         ShoppingList resultList = new ShoppingList(new ArrayList<>());
         resultList.loadListFromFile(testFile);

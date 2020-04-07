@@ -26,6 +26,7 @@ public class ShoppingList {
     }
 
     public void deleteProductByName(String name) {
+        //šeit labāk izmanto forEach
         for (int i = 0; i < shoppingList.size(); i++) {
             if (shoppingList.get(i).getName().equals(name)) {
                 shoppingList.remove(i);
@@ -36,7 +37,7 @@ public class ShoppingList {
     public void printToConsole() {
         int i = 1;
         for (Product product : shoppingList) {
-            System.out.println(i + ". "
+            System.out.println(i + ". " //"i" ir japalielina par 1
                     + product.getName() + " price is "
                     + product.getPrice() + " and category: \""
                     + product.getCategory() + "\";");

@@ -4,6 +4,7 @@ package lv.javaguru.homework.lesson10.level1;
 public class UserValidationService {
 
     public static void validate(User user) {
+        //šīm ir jābut konstantēm, tātad tie ir klases lauki un "private static final"
         final int MIN_AGE = 0;
         final int MAX_AGE = 120;
         final int MIN_LENGTH = 3;
