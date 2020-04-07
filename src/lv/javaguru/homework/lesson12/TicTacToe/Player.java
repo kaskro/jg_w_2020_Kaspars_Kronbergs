@@ -2,10 +2,13 @@ package lv.javaguru.homework.lesson12.TicTacToe;
 
 import java.util.Objects;
 
-public class Player {
+public abstract class Player {
 
     private String name;
     private String symbol;
+
+    public Player() {
+    }
 
     public Player(String name, String symbol) {
         this.name = name;
@@ -27,6 +30,16 @@ public class Player {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
+
+    public void askForInput(Field field) {
+        System.out.print(name + "( '" + symbol + "' ) , please enter one: ");
+        for (Integer cellId : field.getFreeCells()) {
+            System.out.print("'" + cellId + "' ");
+        }
+        System.out.println(";");
+    }
+
+    public abstract void makeAMove(Field field);
 
     @Override
     public boolean equals(Object o) {
