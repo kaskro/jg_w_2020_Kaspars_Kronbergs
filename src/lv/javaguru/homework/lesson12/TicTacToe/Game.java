@@ -50,63 +50,40 @@ public class Game {
                         case PLAYER_VS_COMPUTER:
 
                             System.out.println("Player one:");
-                            playerOne = new RealPlayer();
-                            playerOne.setName(addName(""));
-                            playerOne.setSymbol(addSymbol(""));
+                            playerOne = createPlayer("r", null);
 
                             System.out.println("Player two:");
-                            playerTwo = new ComputerPlayer();
-                            playerTwo.setName(addName(playerOne.getName()));
-                            playerTwo.setSymbol(addSymbol(playerOne.getSymbol()));
+                            playerTwo = createPlayer("c", playerOne);
 
                             currentPlayer = playerOne;
 
-                            while (currentGameState.equals(GameStates.GAME_IN_PROGRESS)) {
-                                currentPlayer.makeAMove(field);
-                                currentGameState = getGameStateFromActions(playerOne, playerTwo, field);
-                                currentPlayer = switchPlayers(playerOne, playerTwo, currentPlayer);
-                            }
+                            currentGameState = doGameLoop(currentGameState, playerOne, playerTwo, currentPlayer, field);
 
                             break;
                         case COMPUTER_VS_COMPUTER:
 
                             System.out.println("Player one:");
-                            playerOne = new ComputerPlayer();
-                            playerOne.setName(addName(""));
-                            playerOne.setSymbol(addSymbol(""));
+                            playerOne = createPlayer("c", null);
 
                             System.out.println("Player two:");
-                            playerTwo = new ComputerPlayer();
-                            playerTwo.setName(addName(playerOne.getName()));
-                            playerTwo.setSymbol(addSymbol(playerOne.getSymbol()));
+                            playerTwo = createPlayer("c", playerOne);
 
                             currentPlayer = playerOne;
 
-                            while (currentGameState.equals(GameStates.GAME_IN_PROGRESS)) {
-                                currentPlayer.makeAMove(field);
-                                currentGameState = getGameStateFromActions(playerOne, playerTwo, field);
-                                currentPlayer = switchPlayers(playerOne, playerTwo, currentPlayer);
-                            }
+                            currentGameState = doGameLoop(currentGameState, playerOne, playerTwo, currentPlayer, field);
+
                             break;
                         default:
 
                             System.out.println("Player one:");
-                            playerOne = new RealPlayer();
-                            playerOne.setName(addName(""));
-                            playerOne.setSymbol(addSymbol(""));
+                            playerOne = createPlayer("r", null);
 
                             System.out.println("Player two:");
-                            playerTwo = new RealPlayer();
-                            playerTwo.setName(addName(playerOne.getName()));
-                            playerTwo.setSymbol(addSymbol(playerOne.getSymbol()));
+                            playerTwo = createPlayer("r", playerOne);
 
                             currentPlayer = playerOne;
 
-                            while (currentGameState.equals(GameStates.GAME_IN_PROGRESS)) {
-                                currentPlayer.makeAMove(field);
-                                currentGameState = getGameStateFromActions(playerOne, playerTwo, field);
-                                currentPlayer = switchPlayers(playerOne, playerTwo, currentPlayer);
-                            }
+                            currentGameState = doGameLoop(currentGameState, playerOne, playerTwo, currentPlayer, field);
                     }
 
                     break;
@@ -122,15 +99,32 @@ public class Game {
                 case DRAW:
                     System.out.println("It's a draw!");
                     currentGameState = doGameReset();
+                    break;
                 case RESET_GAME:
                     field.resetField();
-                    currentPlayer = null;
                     selectedGameMode = null;
                     currentGameState = GameStates.PICK_MODE;
                     break;
             }
         }
 
+    }
+
+    private static Player createPlayer(String type, Player other) {
+        Player player;
+        player = type.equals("r") ? new RealPlayer() : new ComputerPlayer();
+        player.setName(addName(other == null ? "" : other.getName()));
+        player.setSymbol(addSymbol(other == null ? "" : other.getSymbol()));
+        return player;
+    }
+
+    private static GameStates doGameLoop(GameStates currentGameState, Player playerOne, Player playerTwo, Player currentPlayer, Field field) {
+        while (currentGameState.equals(GameStates.GAME_IN_PROGRESS)) {
+            currentPlayer.makeAMove(field);
+            currentGameState = getGameStateFromActions(playerOne, playerTwo, field);
+            currentPlayer = switchPlayers(playerOne, playerTwo, currentPlayer);
+        }
+        return currentGameState;
     }
 
     private static String addName(String other) {
@@ -164,7 +158,7 @@ public class Game {
                 System.out.println("Must be single character! Try again.");
             } else if (symbol.matches("[1-9]")) {
                 System.out.println("Can't be numbers from 1 to 9! Try again.");
-            } else if (symbol == "") {
+            } else if (symbol.equals("")) {
                 System.out.println("Can't be nothing! Try again.");
             } else if (other.equals(symbol)) {
                 System.out.println("This symbol \"" + symbol + "\" is taken by other player. Please choose different symbol.");
