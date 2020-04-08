@@ -1,4 +1,4 @@
-package lv.javaguru.homework.lesson12.TicTacToe;
+package lv.javaguru.homework.lesson12.tictactoe;
 
 public enum GameStates {
     PICK_MODE,

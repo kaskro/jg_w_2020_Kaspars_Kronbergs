@@ -1,4 +1,4 @@
-package lv.javaguru.homework.lesson12.TicTacToe;
+package lv.javaguru.homework.lesson12.tictactoe;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
