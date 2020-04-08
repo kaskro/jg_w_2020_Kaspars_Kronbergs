@@ -40,18 +40,8 @@ class ShoppingListTest {
 
     @Test
     void shouldGetProductsInGivenPriceRange() {
-        //produktu saraksta izveidošanu droši var iznes atsevišķā metodē un izmantot to vairakas reizes
         Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
-        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
-        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
-        Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
-        Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
-
-        mockList.add(orange);
-        mockList.add(banana);
-        mockList.add(milk);
-        mockList.add(radio);
-        mockList.add(laptop);
+        createMockWithProducts();
 
         shoppingList.printToConsole();
 
@@ -61,17 +51,9 @@ class ShoppingListTest {
 
     @Test
     void shouldGetProductListByCategory() {
-        Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
-        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
-        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
         Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
         Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
-
-        mockList.add(orange);
-        mockList.add(banana);
-        mockList.add(milk);
-        mockList.add(radio);
-        mockList.add(laptop);
+        createMockWithProducts();
 
         List<Product> testList = new ArrayList<>();
         testList.add(radio);
@@ -82,36 +64,16 @@ class ShoppingListTest {
 
     @Test
     void shouldPrintListToConsole() {
-        Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
-        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
-        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
-        Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
-        Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
-
-        mockList.add(orange);
-        mockList.add(banana);
-        mockList.add(milk);
-        mockList.add(radio);
-        mockList.add(laptop);
+        createMockWithProducts();
 
         shoppingList.printToConsole();
     }
 
     @Test
     void shouldSaveShoppingListToFile() {
-        Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
-        Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
-        Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
-        Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
-        Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
+        createMockWithProducts();
 
-        mockList.add(orange);
-        mockList.add(banana);
-        mockList.add(milk);
-        mockList.add(radio);
-        mockList.add(laptop);
-
-        File testFile = new File("shoppingList");
+        File testFile = new File("resource/shoppingList");
         shoppingList.saveListInFile(testFile);
         assertTrue(testFile.exists());
         assertTrue(testFile.length() > 0);
@@ -119,23 +81,26 @@ class ShoppingListTest {
 
     @Test
     void shouldLoadShoppingListFromAFile() {
+        createMockWithProducts();
+
+        File testFile = new File("resource/shoppingList");
+        ShoppingList resultList = new ShoppingList(new ArrayList<>());
+        resultList.loadListFromFile(testFile);
+        assertEquals(shoppingList.getShoppingList(), resultList.getShoppingList());
+    }
+
+    private void createMockWithProducts() {
         Product orange = new Product("Orange", new BigDecimal("2.30"), Category.FOOD);
         Product banana = new Product("Banana", new BigDecimal("1.40"), Category.FOOD);
         Product milk = new Product("Orange", new BigDecimal("1.25"), Category.FOOD);
         Product radio = new Product("Radio", new BigDecimal("23.99"), Category.ELECTRONICS);
         Product laptop = new Product("Laptop", new BigDecimal("340.99"), Category.ELECTRONICS);
 
+
         mockList.add(orange);
         mockList.add(banana);
         mockList.add(milk);
         mockList.add(radio);
         mockList.add(laptop);
-
-        //parasti šādus testa resursus var turēt testa mapes resoursu mapē
-        //lai tests darbotos uz jebkuras mašīnas
-        File testFile = new File("shoppingList");
-        ShoppingList resultList = new ShoppingList(new ArrayList<>());
-        resultList.loadListFromFile(testFile);
-        assertEquals(shoppingList.getShoppingList(), resultList.getShoppingList());
     }
 }

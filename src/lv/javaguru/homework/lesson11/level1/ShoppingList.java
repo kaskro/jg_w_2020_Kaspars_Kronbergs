@@ -37,10 +37,11 @@ public class ShoppingList {
     public void printToConsole() {
         int i = 1;
         for (Product product : shoppingList) {
-            System.out.println(i + ". " //"i" ir japalielina par 1
+            System.out.println(i + ". "
                     + product.getName() + " price is "
                     + product.getPrice() + " and category: \""
                     + product.getCategory() + "\";");
+            i++;
         }
     }
 
