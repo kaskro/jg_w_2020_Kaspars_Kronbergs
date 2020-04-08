@@ -125,4 +125,9 @@ class FieldTest {
 
         assertTrue(field.isFourValuesFoundInAnyDirection("X"));
     }
+
+    @Test
+    void shouldGetAmountOfFreeSpaces() {
+        assertEquals(Field.getROW() * Field.getCOL(), field.getAmountOfFreeSpaces());
+    }
 }

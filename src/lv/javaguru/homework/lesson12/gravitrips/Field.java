@@ -151,6 +151,18 @@ public class Field {
         return result;
     }
 
+    public int getAmountOfFreeSpaces() {
+        int count = 0;
+        for (String[] innerArr : field) {
+            for (String value : innerArr) {
+                if (value.equals(".")) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     private void printArray(String[][] arr) {
         for (String[] innerArr : arr) {
             for (String value : innerArr) {
