@@ -120,6 +120,8 @@ public class Game {
     private static GameStates doGameLoop(GameStates currentGameState, Player playerOne, Player playerTwo, Player currentPlayer, Field field) {
         while (currentGameState.equals(GameStates.GAME_IN_PROGRESS)) {
             currentPlayer.makeAMove(field);
+            field.removeColumnsLastPieceWhenFull();
+            field.removeLastRowWhenFull();
             currentGameState = getGameStateFromActions(playerOne, playerTwo, field);
             currentPlayer = switchPlayers(playerOne, playerTwo, currentPlayer);
         }

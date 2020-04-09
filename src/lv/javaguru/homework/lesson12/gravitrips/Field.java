@@ -50,6 +50,40 @@ public class Field {
         return false;
     }
 
+    public void removeColumnsLastPieceWhenFull() {
+        for (int c = 0; c < COL; c++) {
+            if (!canAddToColumn(c)) {
+                removeLastElementInArray(c);
+            }
+        }
+    }
+
+    public void removeLastRowWhenFull() {
+        if (isRowFull(ROW - 1)) {
+            for (int c = 0; c < COL; c++) {
+                removeLastElementInArray(c);
+            }
+        }
+    }
+
+    private void removeLastElementInArray(int c) {
+        for (int i = field[c].length - 1; i >= 0; i--) {
+            if (i == 0) {
+                field[c][i] = ".";
+            } else {
+                field[c][i] = field[c][i - 1];
+            }
+        }
+    }
+
+    public boolean isRowFull(int id) {
+        String[] row = getRowById(id);
+        for (String el : row) {
+            if (el.equals(".")) return false;
+        }
+        return true;
+    }
+
     private boolean isIdInRange(int id) {
         return id >= 0 && id < COL;
     }

@@ -130,4 +130,45 @@ class FieldTest {
     void shouldGetAmountOfFreeSpaces() {
         assertEquals(Field.getROW() * Field.getCOL(), field.getAmountOfFreeSpaces());
     }
+
+    @Test
+    void shouldRemoveLastPieceOfColumnWhenFull() {
+        String[] testArr = {".", "X", "X", "X", "X", "X"};
+
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(0, "X");
+        field.removeColumnsLastPieceWhenFull();
+        assertArrayEquals(testArr, field.getColumnById(0));
+    }
+
+    @Test
+    void shouldBeTrueWhenRowIsFull() {
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(1, "O");
+        field.addValueToColumn(2, "X");
+        field.addValueToColumn(3, "O");
+        field.addValueToColumn(4, "X");
+        field.addValueToColumn(5, "O");
+        field.addValueToColumn(6, "X");
+
+        assertTrue(field.isRowFull(Field.getROW() - 1));
+    }
+
+    @Test
+    void shouldRemoveLastRowWhenFull() {
+        String[] testRow = {".", ".", ".", ".", ".", ".", "."};
+        field.addValueToColumn(0, "X");
+        field.addValueToColumn(1, "O");
+        field.addValueToColumn(2, "X");
+        field.addValueToColumn(3, "O");
+        field.addValueToColumn(4, "X");
+        field.addValueToColumn(5, "O");
+        field.addValueToColumn(6, "X");
+        field.removeLastRowWhenFull();
+        assertArrayEquals(testRow, field.getRowById(Field.getROW() - 1));
+    }
 }
