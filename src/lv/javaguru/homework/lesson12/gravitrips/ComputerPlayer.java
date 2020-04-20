@@ -3,6 +3,13 @@ package lv.javaguru.homework.lesson12.gravitrips;
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
+    public ComputerPlayer() {
+    }
+
+    public ComputerPlayer(String name, String symbol) {
+        super(name, symbol);
+    }
+
     @Override
     public void makeAMove(Field field) {
         Random random = new Random();

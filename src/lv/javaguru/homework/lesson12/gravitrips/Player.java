@@ -41,6 +41,7 @@ public abstract class Player {
         System.out.println(";");
     }
 
+
     public abstract void makeAMove(Field field);
 
     @Override

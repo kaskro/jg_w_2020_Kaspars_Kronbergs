@@ -49,11 +49,13 @@ public class Game {
                     switch (selectedGameMode) {
                         case PLAYER_VS_COMPUTER:
 
-                            System.out.println("Player one:");
-                            playerOne = createPlayer("r", null);
+//                            System.out.println("Player one:");
+//                            playerOne = createPlayer("r", null);
+                            playerOne = new RealPlayer("Es", "X");
 
-                            System.out.println("Player two:");
-                            playerTwo = createPlayer("c", playerOne);
+//                            System.out.println("Player two:");
+//                            playerTwo = createPlayer("s", playerOne);
+                            playerTwo = new SmartComputerPlayer("PC2", "O");
 
                             currentPlayer = playerOne;
 
@@ -111,7 +113,16 @@ public class Game {
 
     private static Player createPlayer(String type, Player other) {
         Player player;
-        player = type.equals("r") ? new RealPlayer() : new ComputerPlayer();
+        switch (type) {
+            case "r":
+                player = new RealPlayer();
+                break;
+            case "s":
+                player = new SmartComputerPlayer();
+                break;
+            default:
+                player = new ComputerPlayer();
+        }
         player.setName(addName(other == null ? "" : other.getName()));
         player.setSymbol(addSymbol(other == null ? "" : other.getSymbol()));
         return player;
@@ -192,13 +203,13 @@ public class Game {
     }
 
     private static GameStates getGameStateFromActions(Player playerOne, Player playerTwo, Field field) {
-        if (!field.isFourValuesFoundInAnyDirection(playerOne.getSymbol())
-                && !field.isFourValuesFoundInAnyDirection(playerTwo.getSymbol())
+        if (!field.isValueSequenceFound(playerOne.getSymbol())
+                && !field.isValueSequenceFound(playerTwo.getSymbol())
                 && field.getAmountOfFreeSpaces() < 1) {
             return GameStates.DRAW;
-        } else if (field.isFourValuesFoundInAnyDirection(playerOne.getSymbol())) {
+        } else if (field.isValueSequenceFound(playerOne.getSymbol())) {
             return GameStates.PLAYER_ONE_WINS;
-        } else if (field.isFourValuesFoundInAnyDirection(playerTwo.getSymbol())) {
+        } else if (field.isValueSequenceFound(playerTwo.getSymbol())) {
             return GameStates.PLAYER_TWO_WINS;
         } else {
             return GameStates.GAME_IN_PROGRESS;

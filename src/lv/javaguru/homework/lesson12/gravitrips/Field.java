@@ -1,57 +1,57 @@
 package lv.javaguru.homework.lesson12.gravitrips;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class Field {
 
-    private static final int ROW = 6;
-    private static final int COL = 7;
-    private String[][] field = new String[COL][ROW];
+    private static final int ROW_AMOUNT = 6;
+    private static final int COL_AMOUNT = 7;
+    private static final int COUNT_IN_SEQUENCE = 4;
+    private String emptySpace = ".";
+    private String[][] field = new String[COL_AMOUNT][ROW_AMOUNT];
 
     Field() {
-        for (int c = 0; c < COL; c++) {
-            for (int r = 0; r < ROW; r++) {
-                field[c][r] = ".";
+        for (int c = 0; c < COL_AMOUNT; c++) {
+            for (int r = 0; r < ROW_AMOUNT; r++) {
+                field[c][r] = emptySpace;
             }
         }
     }
 
-    public void displayField() {
-        for (int r = -1; r < ROW; r++) {
-            for (int c = 0; c < COL; c++) {
-                if (r == -1) {
-                    System.out.print((getFreeColumnIDs()[c] == -1) ? "  " : getFreeColumnIDs()[c] + 1 + " ");
-                } else {
-                    System.out.print(field[c][r] + " ");
+    public Field(String[][] field) {
+        this.field = field;
+    }
+
+    public void setField(String[][] field) {
+        this.field = field;
+    }
+
+    public boolean addValueToColumn(int col, String value) {
+        if (canAddToColumn(col)) {
+            for (int r = ROW_AMOUNT - 1; r >= 0; r--) {
+                if (field[col][r].equals(emptySpace)) {
+                    field[col][r] = value;
+                    return true;
                 }
             }
-            System.out.println();
         }
-    }
-
-    public String[] getColumnById(int id) {
-        return field[id];
-    }
-
-    public String[] getRowById(int id) {
-        String[] tempRow = new String[COL];
-        for (int c = 0; c < COL; c++) {
-            tempRow[c] = field[c][id];
-        }
-        return tempRow;
+        return false;
     }
 
     public boolean canAddToColumn(int id) {
         if (isIdInRange(id)) {
             for (String value : field[id]) {
-                if (value.equals(".")) return true;
+                if (value.equals(emptySpace)) return true;
             }
         }
         return false;
     }
 
     public void removeColumnsLastPieceWhenFull() {
-        for (int c = 0; c < COL; c++) {
+        for (int c = 0; c < COL_AMOUNT; c++) {
             if (!canAddToColumn(c)) {
                 removeLastElementInArray(c);
             }
@@ -59,8 +59,8 @@ public class Field {
     }
 
     public void removeLastRowWhenFull() {
-        if (isRowFull(ROW - 1)) {
-            for (int c = 0; c < COL; c++) {
+        if (isRowFull(ROW_AMOUNT - 1)) {
+            for (int c = 0; c < COL_AMOUNT; c++) {
                 removeLastElementInArray(c);
             }
         }
@@ -69,7 +69,7 @@ public class Field {
     private void removeLastElementInArray(int c) {
         for (int i = field[c].length - 1; i >= 0; i--) {
             if (i == 0) {
-                field[c][i] = ".";
+                field[c][i] = emptySpace;
             } else {
                 field[c][i] = field[c][i - 1];
             }
@@ -79,103 +79,102 @@ public class Field {
     public boolean isRowFull(int id) {
         String[] row = getRowById(id);
         for (String el : row) {
-            if (el.equals(".")) return false;
+            if (el.equals(emptySpace)) return false;
         }
         return true;
     }
 
     private boolean isIdInRange(int id) {
-        return id >= 0 && id < COL;
+        return id >= 0 && id < COL_AMOUNT;
     }
 
-    public boolean addValueToColumn(int col, String value) {
-        if (canAddToColumn(col)) {
-            for (int r = ROW - 1; r >= 0; r--) {
-                if (field[col][r].equals(".")) {
-                    field[col][r] = value;
-                    return true;
+
+    public int getSymbolCount(String[] arr, String value) {
+        int count = 0;
+        for (String symbol : arr) {
+            if (symbol.equals(value))
+                count++;
+        }
+        return count;
+    }
+
+    public boolean isOnlyOneSymbol(String[] arr, String value) {
+        for (String symbol : arr) {
+            if (!symbol.equals(value) && !symbol.equals(emptySpace)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isValueSequenceFound(String value) {
+        String[][] temp;
+        for (int i = 0; i <= ROW_AMOUNT - COUNT_IN_SEQUENCE; i++) {
+            for (int j = 0; j <= COL_AMOUNT - COUNT_IN_SEQUENCE; j++) {
+                temp = getInnerArray(COUNT_IN_SEQUENCE, i, j);
+                for (int id = 0; id < COUNT_IN_SEQUENCE; id++) {
+                    if (isFoundInRow(value, temp, id)) return true;
+                    if (isFoundInCol(value, temp, id)) return true;
+                    if (isFoundInDiagonals(value, temp)) return true;
                 }
             }
         }
         return false;
     }
 
-    public int[] getFreeColumnIDs() {
-        int[] temp = new int[COL];
-        for (int i = 0; i < COL; i++) {
-            if (canAddToColumn(i)) {
-                temp[i] = i;
-            } else {
-                temp[i] = -1;
-            }
-        }
-        return temp;
+    private boolean isFoundInDiagonals(String value, String[][] temp) {
+        if (isOnlyOneSymbol(getDiagonalOfArray(temp, true).get(), value)
+                && getSymbolCount(getDiagonalOfArray(temp, true).get(), value) == COUNT_IN_SEQUENCE
+        ) return true;
+        if (isOnlyOneSymbol(getDiagonalOfArray(temp, false).get(), value)
+                && getSymbolCount(getDiagonalOfArray(temp, false).get(), value) == COUNT_IN_SEQUENCE
+        ) return true;
+        return false;
     }
 
-
-    public static int getROW() {
-        return ROW;
+    private boolean isFoundInCol(String value, String[][] temp, int id) {
+        if (isOnlyOneSymbol(getArrayColById(temp, id).get(), value)
+                && getSymbolCount(getArrayColById(temp, id).get(), value) == COUNT_IN_SEQUENCE
+        ) return true;
+        return false;
     }
 
-    public boolean isFourSameValuesInColumns(String value) {
-        String[] col;
-        for (int id = 0; id < COL; id++) {
-            col = getColumnById(id);
-            for (int i = 0; i < 3; i++) {
-                if (col[i].equals(value)
-                        && col[i + 1].equals(value)
-                        && col[i + 2].equals(value)
-                        && col[i + 3].equals(value)
-                ) {
-                    return true;
-                }
-            }
+    private boolean isFoundInRow(String value, String[][] temp, int id) {
+        if (isOnlyOneSymbol(getArrayRowById(temp, id).get(), value)
+                && getSymbolCount(getArrayRowById(temp, id).get(), value) == COUNT_IN_SEQUENCE
+        ) return true;
+        return false;
+    }
+
+    public boolean isValueFound(String value, String[][] temp, String direction, int id, int amount) {
+        switch (direction) {
+            case "col":
+                if (isOnlyOneSymbol(getArrayColById(temp, id).get(), value)
+                        && getSymbolCount(getArrayColById(temp, id).get(), value) == amount
+                ) return true;
+                break;
+            case "diagonal":
+                if (isOnlyOneSymbol(getDiagonalOfArray(temp, true).get(), value)
+                        && getSymbolCount(getDiagonalOfArray(temp, true).get(), value) == amount
+                ) return true;
+                if (isOnlyOneSymbol(getDiagonalOfArray(temp, false).get(), value)
+                        && getSymbolCount(getDiagonalOfArray(temp, false).get(), value) == amount
+                ) return true;
+                break;
+            default:
+                if (isOnlyOneSymbol(getArrayRowById(temp, id).get(), value)
+                        && getSymbolCount(getArrayRowById(temp, id).get(), value) == amount
+                ) return true;
         }
         return false;
     }
 
-    public boolean isFourSameValuesInRows(String value) {
-        String[] row;
-        for (int id = 0; id < ROW; id++) {
-            row = getRowById(id);
-            for (int i = 0; i < 4; i++) {
-                if (row[i].equals(value)
-                        && row[i + 1].equals(value)
-                        && row[i + 2].equals(value)
-                        && row[i + 3].equals(value)
-                ) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean isFourSameValuesInDiagonals(String value) {
-        int colOffset = 4;
-        int rowOffset = 3;
-        int amount = 4;
-
-        for (int i = 0; i < rowOffset; i++) {
-            for (int j = 0; j < colOffset; j++) {
-                if (checkBothDiagonals(getInnerArray(amount, i, j), value)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean isFourValuesFoundInAnyDirection(String value) {
-        return isFourSameValuesInRows(value) || isFourSameValuesInColumns(value) || isFourSameValuesInDiagonals(value);
-    }
-
-    private String[][] getInnerArray(int amount, int i, int j) {
+    public String[][] getInnerArray(int amount, int rowOffset, int colOffset) {
         String[][] result = new String[amount][amount];
         int incI = 0;
         int incJ = 0;
-        for (int r = i; r < amount + i; r++) {
-            for (int c = j; c < amount + j; c++) {
+        for (int r = rowOffset; r < amount + rowOffset; r++) {
+            for (int c = colOffset; c < amount + colOffset; c++) {
                 result[incI][incJ] = field[c][r];
                 incJ++;
             }
@@ -185,11 +184,31 @@ public class Field {
         return result;
     }
 
+    public Optional<String[]> getArrayRowById(String[][] arr, int id) {
+        if (arr.length == arr[0].length || id < 0 || id > arr.length) {
+            String[] tempRow = new String[arr.length];
+            for (int c = 0; c < arr.length; c++) {
+                tempRow[c] = arr[c][id];
+            }
+            return Optional.of(tempRow);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<String[]> getArrayColById(String[][] arr, int id) {
+        if (arr.length == arr[0].length || id < 0 || id > arr.length) {
+            return Optional.of(arr[id]);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public int getAmountOfFreeSpaces() {
         int count = 0;
         for (String[] innerArr : field) {
             for (String value : innerArr) {
-                if (value.equals(".")) {
+                if (value.equals(emptySpace)) {
                     count++;
                 }
             }
@@ -197,59 +216,111 @@ public class Field {
         return count;
     }
 
-    private void printArray(String[][] arr) {
-        for (String[] innerArr : arr) {
-            for (String value : innerArr) {
-                System.out.print(value + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    private boolean checkFirstDiagonal(String[][] arr, String value) {
-        for (int r = 0; r < arr.length; r++) {
-            for (int c = 0; c < arr[r].length; c++) {
-                if (r == c) {
-                    if (!arr[r][c].equals(value)) {
-                        return false;
+    public Optional<String[]> getDiagonalOfArray(String[][] arr, boolean topLeftToBottomRight) {
+        if (arr.length == arr[0].length) {
+            String[] result = new String[arr.length];
+            for (int r = 0; r < arr.length; r++) {
+                for (int c = 0; c < arr[r].length; c++) {
+                    if (topLeftToBottomRight) {
+                        if (r == c) {
+                            result[r] = arr[r][c];
+                        }
+                    } else {
+                        if (r == (arr[r].length - 1) - c) {
+                            result[r] = arr[r][c];
+                        }
                     }
                 }
             }
-        }
-        return true;
-    }
-
-    private boolean checkSecondDiagonal(String[][] arr, String value) {
-        for (int r = 0; r < arr.length; r++) {
-            for (int c = 0; c < arr[r].length; c++) {
-                if (r == (arr[r].length - 1) - c) {
-                    if (!arr[r][c].equals(value)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    private boolean checkBothDiagonals(String[][] arr, String value) {
-        return (checkFirstDiagonal(arr, value) || checkSecondDiagonal(arr, value));
-    }
-
-    private static void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
+            return Optional.of(result);
+        } else {
+            return Optional.empty();
         }
     }
 
-    public static int getCOL() {
-        return COL;
+    public String getEmptySpace() {
+        return emptySpace;
+    }
+
+    public void setEmptySpace(String emptySpace) {
+        this.emptySpace = emptySpace;
+    }
+
+    public static int getRowAmount() {
+        return ROW_AMOUNT;
+    }
+
+    public static int getColAmount() {
+        return COL_AMOUNT;
+    }
+
+    public static int getCountInSequence() {
+        return COUNT_IN_SEQUENCE;
     }
 
     public String[][] getField() {
         return field;
+    }
+
+    public Set<String> getFieldSymbols() {
+        Set<String> set = new HashSet<>();
+        for (String[] innerArr : field) {
+            for (String value : innerArr) {
+                set.add(value);
+            }
+        }
+        return set;
+    }
+
+    public Optional<String[]> getColumnById(int id) {
+        if (id >= 0 && id == field.length) {
+            return Optional.of(field[id]);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public String[] getRowById(int id) {
+        String[] tempRow = new String[COL_AMOUNT];
+        for (int c = 0; c < COL_AMOUNT; c++) {
+            tempRow[c] = field[c][id];
+        }
+        return tempRow;
+    }
+
+    public int[] getFreeColumnIDs() {
+        int[] temp = new int[COL_AMOUNT];
+        for (int i = 0; i < COL_AMOUNT; i++) {
+            if (canAddToColumn(i)) {
+                temp[i] = i;
+            } else {
+                temp[i] = -1;
+            }
+        }
+        return temp;
+    }
+
+    public String[][] getCopyOfField() {
+        String[][] newCopy = new String[COL_AMOUNT][ROW_AMOUNT];
+        for (int c = 0; c < COL_AMOUNT; c++) {
+            for (int r = 0; r < ROW_AMOUNT; r++) {
+                newCopy[c][r] = field[c][r];
+            }
+        }
+        return newCopy;
+    }
+
+    public void displayField() {
+        for (int r = -1; r < ROW_AMOUNT; r++) {
+            for (int c = 0; c < COL_AMOUNT; c++) {
+                if (r == -1) {
+                    System.out.print((getFreeColumnIDs()[c] == -1) ? "  " : getFreeColumnIDs()[c] + 1 + " ");
+                } else {
+                    System.out.print(field[c][r] + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 
     @Override
